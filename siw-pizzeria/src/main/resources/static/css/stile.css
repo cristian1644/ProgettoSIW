@@ -1,0 +1,97 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('/images/background.jpg');
+  background-repeat: repeat; /* Ripete il pattern */
+  background-size: cover; /* Copre l'intera area */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 20px;
+  width: 500px; /* Imposta una larghezza fissa per il logo */
+  height: 500px; /* Imposta un'altezza fissa per il logo */
+  border-radius: 30%; /* Trasforma l'immagine in un cerchio */
+  object-position: center center; /* Centra l'immagine orizzontalmente e verticalmente */
+  
+}
+
+.red-flex-container {
+  background-color: rgba(255, 255, 255, 0.9); /* Sfondo bianco semi-trasparente */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 40%; /* Imposta una larghezza del 45% per ciascun container */
+  border: 10px solid; /* Colore del bordo */
+  display: inline-block; /* Visualizza i container uno accanto all'altro */
+  vertical-align: top; /* Allinea i contenuti all'inizio dei container */
+  margin-right: 5px; /* Spazio tra i container */
+  margin-left: 2.5%; /* Margine a sinistra per tutti i container */
+  border-color: #dc3545; /* Colore rosso */
+}
+
+.blue-flex-container {
+  background-color: rgba(255, 255, 255, 0.9); /* Sfondo bianco semi-trasparente */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 40%; /* Imposta una larghezza del 45% per ciascun container */
+  border: 10px solid; /* Colore del bordo */
+  display: inline-block; /* Visualizza i container uno accanto all'altro */
+  vertical-align: top; /* Allinea i contenuti all'inizio dei container */
+  margin-right: 2.5%; /* Margine a destra per tutti i container */
+  border-color: blue; /* Colore blu */
+}
+
+
+
+h1 {
+  text-align: center; /* Centra il titolo */
+  color: #333; /* Colore del testo */
+}
+
+div {
+  text-align: center; /* Centra il testo all'interno del div */
+  margin: 20px auto; /* Spazio attorno al div */
+}
+
+a {
+  display: block; /* Mostra i link come blocchi */
+  margin-bottom: 10px; /* Spazio tra i link */
+  color: #007bff; /* Colore del testo per i link */
+  text-decoration: none; /* Rimuovi la sottolineatura */
+}
+
+a:hover {
+  color: #0056b3; /* Cambia il colore del testo al passaggio del mouse */
+}
+
+a.red-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #dc3545; /* Colore rosso */
+  color: #fff; /* Colore del testo */
+  text-decoration: none; /* Rimuovi la sottolineatura */
+  border-radius: 20px; /* Angoli arrotondati */
+  transition: background-color 0.3s; /* Animazione al passaggio del mouse */
+}
+
+a.red-button:hover {
+  background-color: #c82333; /* Cambia il colore al passaggio del mouse */
+}
+
+a.blue-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: blue;
+  color: #fff; /* Colore del testo */
+  text-decoration: none; /* Rimuovi la sottolineatura */
+  border-radius: 20px; /* Angoli arrotondati */
+  transition: background-color 0.3s; /* Animazione al passaggio del mouse */
+}
+
+a.blue-button:hover {
+  background-color: darkblue; /* Cambia il colore al passaggio del mouse */
+}
