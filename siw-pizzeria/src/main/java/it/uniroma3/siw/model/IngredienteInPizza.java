@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class IngredienteInPizza {
@@ -12,8 +13,10 @@ public class IngredienteInPizza {
 	  @GeneratedValue(strategy = GenerationType.AUTO)
 	  private Long id;
 	 
+	 @ManyToOne
 	 private Ingrediente ingrediente;
 	  
+	 @ManyToOne
 	 private Pizza pizza;
 	 private Integer quantita;
 	 
