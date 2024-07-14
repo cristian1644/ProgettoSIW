@@ -17,7 +17,7 @@ public class Pizza {
 	private Long id;
 
 	private String nome;
-	private String img;
+	private List <String> images;
 
 	private List<IngredienteInPizza> ingredientiInPizza;
 
@@ -36,11 +36,11 @@ public class Pizza {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getImg() {
-		return img;
+	public List<String> getImages() {
+		return images;
 	}
-	public void setImg(String img) {
-		this.img = img;
+	public void setImages(List<String> images) {
+		this.images = images;
 	}
 	public List<IngredienteInPizza> getIngredientiInPizza() {
 		return ingredientiInPizza;

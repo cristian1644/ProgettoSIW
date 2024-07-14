@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Pizza</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<div><a href="/"><img src="/images/logo.png" width="30%" class="logo"/></a></div>
+	<div class="red-container">
+	<h1>Dettagli Pizza</h1>
+	<div th:if="${pizza}">
+		<div class="item">
+		<span th:text="${pizza.nome}">Nome</span>
+		<span th:text="'(' + ${pizza.descrizione} + ')'">Descrizione</span>
+		<li th:each="immagine:${images}">
+				<span><img width="5%" th:src=${immagine} /></span>
+			</li>
+		</div>
+	</div>
+	</div>
+</body>
+
+</html>

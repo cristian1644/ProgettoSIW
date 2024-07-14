@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pizze</title>
+		<link rel="stylesheet" href="/css/stile.css?version=2"/>
+	</head>
+	
+	<body>
+		<div><a href="/"><img src="/images/logo.png" width="30%" class="logo"/></a></div>
+		<div class="container-ricette">
+		<h1 class="title">Pizze</h1>
+		<div th:if="${pizze.isEmpty()}">Non ci sono pizze inserite</div>
+		<ul>
+			<ul>
+  				<li th:each="pizza : ${pizze}" class="item">
+    				<a th:href="@{'/pizza/' + ${pizza.id}}" class="item-elenco" th:text="${pizza.nome}"></a>
+  				</li>
+			</ul>
+			
+			<ul>
+</ul>
+		</ul>
+		</div>
+	</body>
+</html>
