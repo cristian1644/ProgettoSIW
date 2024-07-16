@@ -1,5 +1,6 @@
 package it.uniroma3.siw.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import it.uniroma3.siw.service.PizzaService;
 @Controller
 public class PizzaController {
 
-	private PizzaService pizzaService;
+	@Autowired private PizzaService pizzaService;
 
 	@GetMapping("/formNewPizza")
 	public String formNewPizza(Model model) {
@@ -22,7 +23,7 @@ public class PizzaController {
 		return "formNewPizza.html";
 	}
 
-	@PostMapping("/pizza")
+	@PostMapping("/pizze")
 	public String newPizza(@ModelAttribute("pizza") Pizza pizza, Model model) {
 		this.pizzaService.save(pizza);
 		model.addAttribute("pizza", pizza);
@@ -35,8 +36,8 @@ public class PizzaController {
 	  return "formSearchPizza.html";
 	}
 
-	@PostMapping("/searchRicetta")
-	public String searchRicetta(Model model, @RequestParam String nome) {
+	@PostMapping("/searchPizza")
+	public String searchPizza(Model model, @RequestParam String nome) {
 		model.addAttribute("pizza", this.pizzaService.findByNome(nome));
 		return "pizza.html";
 	}

@@ -3,13 +3,15 @@
   <head>
     <title>Nuova pizza</title>
     <link rel="stylesheet" href="/css/stile.css?version=3" />
+	<link rel="stylesheet" href="/css/form.css" />
   </head>
   <body>
 	<a href="/"><img src="images/logo.png" class="logo" /></a>
-    <div class="red-container">
-      <h1>Aggiungi una pizza</h1>
-      <form th:action="@{/pizze}" method="POST" th:object="${pizza}">
+    <div class="column-flex-container">
+      <form class="form-item" th:action="@{/pizze}" method="POST" th:object="${pizza}">
 
+		<h1>Aggiungi una pizza</h1>
+		
         <div class="form-group">
           <label>Nome della pizza:</label>
           <input required type="text" th:field="${pizza.nome}" />
