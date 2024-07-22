@@ -6,8 +6,8 @@
 	<link rel="stylesheet" href="/css/form.css" />
   </head>
   <body>
-	<a href="/"><img src="images/logo.png" class="logo" /></a>
-    <div class="column-flex-container">
+	<a href="/"><img src="images/logo.jpg" class="logo" /></a>
+    <div class="row-flex-container">
       <form class="form-item" th:action="@{/pizze}" method="POST" th:object="${pizza}">
 
 		<h1>Aggiungi una pizza</h1>
@@ -20,8 +20,8 @@
           <label>Descrizione:</label>
           <input required type="text" th:field="${pizza.descrizione}" />
         </div>
-        <div class="form-errors" th:if="${#fields.hasErrors('nome')}">
-                <span th:errors="*{nome}"></span>
+        <div th:if="${#fields.hasErrors('nome')}">
+                <span th:errors="*{nome}" class="error-message"></span>
             </div>
         <div class="form-group">
           <button type="submit" class="submit-button">Conferma</button>

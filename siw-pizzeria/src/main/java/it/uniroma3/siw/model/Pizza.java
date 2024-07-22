@@ -23,6 +23,8 @@ public class Pizza {
 	private String nome;
 	private List <String> images;
 
+	private float prezzo;
+	
 	@OneToMany(mappedBy="pizza")
 	private List<IngredienteInPizza> ingredientiInPizza;
 
@@ -47,6 +49,12 @@ public class Pizza {
 	}
 	public void setImages(List<String> images) {
 		this.images = images;
+	}
+	public float getPrezzo() {
+		return prezzo;
+	}
+	public void setPrezzo(float prezzo) {
+		this.prezzo = prezzo;
 	}
 	public List<IngredienteInPizza> getIngredientiInPizza() {
 		return ingredientiInPizza;

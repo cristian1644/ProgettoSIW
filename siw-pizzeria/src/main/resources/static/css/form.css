@@ -19,3 +19,9 @@
 .submit-button:hover {
   background-color: lightblue;
 }
+
+.error-message {
+    margin-top: 20px;
+    color: red;
+    font-weight: bold;
+}

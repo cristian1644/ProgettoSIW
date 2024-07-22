@@ -6,17 +6,18 @@
   <link rel="stylesheet" href="/css/form.css" />
 </head>
 <body>
-  <div><a href="/"><img src="/images/logo.png" width="30%" class="logo"/></a></div>
+  <div><a href="/"><img src="/images/logo.jpg" width="30%" class="logo"/></a></div>
   <div class="column-flex-container">
-    <form class="form-item" th:action="@{/searchPizza}" method="POST">
+    <form class="form-item" th:action="@{/searchPizza}" method="POST" th:object="${pizza}">
 	  <h1>Inserisci il nome della pizza che vuoi cercare</h1>
       <div class="form-group">
           <label>Nome:</label>
-          <input required type="text" th:value="${nome}" name="nome" />
-        </div>
-        <div style="color: red;">
-         <span th:text="${messaggioErrore}">Errore</span>
-	  </div>
+          <input required type="text" th:field="${pizza.nome}" />
+        </div>		
+		<div th:if="${#fields.hasErrors('nome')}">
+			<span th:errors="*{nome}" class="error-message"></span>
+		</div>
+		
           <button type="submit" class="submit-button">Cerca</button>         
     </form>
   </div>

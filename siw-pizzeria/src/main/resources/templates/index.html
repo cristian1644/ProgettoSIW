@@ -2,6 +2,8 @@
 <html>
 
 <head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 	<title>
 		SiwPizzeria - Homepage
 	</title>
@@ -10,9 +12,99 @@
 
 <body>
 	<nav></nav>
-	<header></header>
+	<header>
+		<div class="header-container">	
+			<span>
+				<a href="/" class="header-item">
+								<img src="images/pizza.png" alt="Homepage" class="image">
+								<span>HOMEPAGE</span>
+				</a>
+			</span>	
+			<span>
+				<a href="/pizze" class="header-item">
+								<img src="images/menu.png" alt="Menu" class="image">
+								<span>MENU</span>
+				</a>
+			</span>		
+			<span>
+				<a href="/orari" class="header-item">
+								<img src="images/orologio.png" alt="Orari" class="image">
+								<span>ORARI</span>
+				</a>
+			</span>
+			<span>
+				<a href="/login" class="header-item">
+				                <img src="images/loginIcon.png" alt="Account" class="image">
+				                <span>ACCOUNT</span>
+				            </a>
+			</span>
+		</div>
+	</header>
 	<section>
-		<div><img src="/images/logo.png" width="35%" class="logo"/></div>
+		<div class="row-flex-container">
+			<span>
+				<video class="video" autoplay muted playsinline>
+					<source src="/images/gifOrdinaPizza.mp4" type="video/mp4">
+				</video>
+				
+				<script>
+				    document.addEventListener("DOMContentLoaded", function() { //il codice va eseguito quando viene caricato l'html
+				      var video = document.querySelector(".video"); 
+				      video.onended = function() {
+				        // Mantiene l'ultimo frame del video
+				        video.pause(); //stoppo il video
+				        video.currentTime = video.duration; //skippo e blocco l'ultimo frame'
+				      };
+				    });
+				  </script>
+				
+			</span>
+			<span>
+				<img src="/images/logo.jpg" width="35%" class="logo"/>
+			</span>
+		</div>
+		<div id="slider-title"><img id="slider-img"src="images/sliderTitle.png"></div>
+		<!--SLIDER PIZZE PIU AMATE-->
+		<div class="swiper-container">
+		  <div class="swiper-wrapper">
+		    <div class="swiper-slide"><img src="/images/margherita.jpg" alt="Pizza Margherita">
+				<div class="price">€6.50</div>
+			</div>
+		    <div class="swiper-slide"><img src="/images/crostino.jpg" alt="Image 2">
+				<div class="price">€7.50</div>
+		    </div>
+		    <div class="swiper-slide"><img src="/images/patate.jpg" alt="Image 3">
+				<div class="price">€6.50</div>
+			</div>
+			<div class="swiper-slide"><img src="/images/patate.jpg" alt="Image 3"></div>
+		    <!-- Aggiungi altre slide qui -->
+		  </div>
+		  <!-- Aggiungi i controlli opzionali se desideri -->
+		  <div class="swiper-pagination"></div>
+		  <div class="swiper-button-next"><i class="fa-solid fa-arrow-right"></i></div>
+		  <div class="swiper-button-prev"><i class="fa-solid fa-arrow-left"></i></div>
+		<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+		</div>
+		<script>
+		  var swiper = new Swiper('.swiper-container', {
+		    slidesPerView: 3,            // Numero di slide visibili contemporaneamente
+		    spaceBetween: 10,            // Spazio tra le slide
+		    autoplay: {
+		      delay: 4000,               // Tempo in millisecondi tra le transizioni
+		    },
+		    pagination: {
+		      el: '.swiper-pagination',  // Elemento della paginazione
+		      clickable: true,           // Consente di cliccare sui puntini di paginazione
+		    },
+		    navigation: {
+		      nextEl: '.swiper-button-next', // Pulsante per andare alla slide successiva
+		      prevEl: '.swiper-button-prev', // Pulsante per tornare alla slide precedente
+		    },
+		    loop: true,                   // Abilita il loop infinito
+		    speed: 500                    // Velocità della transizione
+		  });
+		</script>
+		
 		<div class="row-flex-container">
 		<span class="flex-item">
 			<h1>Sezione Pizze</h1>
@@ -20,7 +112,7 @@
 			<br>
 			<a href="/formNewPizza" class="red-button">Aggiungi una pizza</a>
 			<br>
-			<a href="/formSearchPizza" class="red-button"> Cerca una pizza per nome </a>
+			<a href="/formSearchPizza" class="red-button"> Cerca una pizza</a>
 		</span>
 		<span class="flex-item">
 			<h1>Sezione Ingredienti</h1>
