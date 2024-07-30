@@ -43,25 +43,35 @@ public class PizzaController {
 	    }
 
 	}
-
-
+	
+	 @ModelAttribute("searchPizza")
+	    public Pizza createSearchPizzaModel() {
+	        return new Pizza(); // Oggetto modello per il form di ricerca
+	    }
+	
 	@GetMapping("/formSearchPizza")
 	public String formSearchPizza(Model model) {
 		model.addAttribute("pizza", new Pizza());
 		return "formSearchPizza.html";
 	}
 
+	 @GetMapping("/")
+	    public String index(Model model) {
+	        model.addAttribute("searchPizza", new Pizza());
+	        return "index"; 
+	    }
+	
 	@PostMapping("/searchPizza") 
-	public String searchPizza(@Valid @ModelAttribute("pizza") Pizza pizza,BindingResult bindingResult, Model model) {
+	public String searchPizza(@Valid @ModelAttribute("searchPizza") Pizza searchPizza,BindingResult bindingResult, Model model) {
 		
-		this.searchPizzaValidator.validate(pizza,bindingResult);
+		this.searchPizzaValidator.validate(searchPizza,bindingResult);
 	    if (!bindingResult.hasErrors()) {
-	    	 Pizza foundPizza = pizzaRepository.findByNome(pizza.getNome());
-	    	 model.addAttribute("pizza", foundPizza);
+	    	 Pizza foundPizza = pizzaRepository.findByNome(searchPizza.getNome());
+	    	 model.addAttribute("searchPizza", foundPizza);
 	    	return "redirect:pizza/" + foundPizza.getId();
 	    } else {
 	    	 bindingResult.rejectValue("nome", "pizza.notExists");		
-		return "formSearchPizza.html";
+		return "index";
 	    }
 	}
 
@@ -75,6 +85,7 @@ public class PizzaController {
 	@GetMapping("/pizze")
 	public String showPizze(Model model) {
 		model.addAttribute("pizze",this.pizzaService.findAll());
+		model.addAttribute("pizza", new Pizza()); // Aggiungi l'oggetto pizza al modello
 		return "pizze.html";
 	}
 }

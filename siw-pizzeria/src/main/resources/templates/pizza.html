@@ -3,19 +3,87 @@
 
 <head>
 	<title>Pizza</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<link rel="stylesheet" href="/css/stile.css?version=2"/>
+	<link rel="stylesheet" href="/css/pizza.css?version=2"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-	<div><a href="/"><img src="/images/logo.jpg" width="30%" class="logo"/></a></div>
-	<div class="column-flex-container">
-		<div class="flex-item">	
-			<h1>Dettagli Pizza</h1>
-				<span th:text="${pizza.nome}">Nome</span>
-				<span th:text="'(' + ${pizza.descrizione} + ')'">Descrizione</span>
-				<li th:each="immagine:${images}">
-						<span><img width="5%" th:src=${immagine} /></span>
-				</li>
+	
+	<!--HEADER-->
+	<header>
+				<div class="header-container">	
+					<img id="siwPizzeria" src="/images/siwPizzeriaD.gif">
+					
+					<div class="search-container">
+						<form class="search-form" th:action="@{/searchPizza}" method="POST" th:object="${searchPizza}">
+							<div class="searchSubmit-container">
+								<div class="form-group">
+									<input class="search-input" required type="text" placeholder="Cerca una pizza..." th:field="${searchPizza.nome}" />
+								</div>
+								<button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+							</div>
+							<div th:if="${#fields.hasErrors('nome')}" class="error-container">
+								<span th:errors="*{nome}" class="error-message"></span>
+							</div>
+						</form>
+					</div>
+								
+					<span>
+						<a href="/" class="header-item">
+										<img src="/images/header/pizza.png" alt="Homepage" class="image">
+										<span>HOMEPAGE</span>
+						</a>
+					</span>	
+					<span>
+						<a href="/pizze" class="header-item">
+										<img src="/images/header/menu.png" alt="Menu" class="image">
+										<span>MENU</span>
+						</a>
+					</span>	
+					<span>
+						<a href="/ingredienti" class="header-item">
+										<img src="/images/header/saliera.png" alt="Ingredienti" class="image">
+										<span>INGREDIENTI</span>
+						</a>
+					</span>		
+					<span>
+						<a href="/orari" class="header-item">
+										<img src="/images/header/orologio.png" alt="Orari" class="image">
+										<span>ORARI</span>
+						</a>
+					</span>
+					<span>
+						<a href="/login" class="header-item">
+						                <img src="/images/header/loginIcon.png" alt="Account" class="image">
+						                <span>ACCOUNT</span>
+						            </a>
+					</span>
+				</div>
+			</header>
+	
+	<div class="logo-secondarie"><a href="/"><img src="/images/logo.jpg" width="30%" class="logo"/></a></div>
+	
+	<div class="main-container">
+		<h1>
+			<span th:text="${pizza.nome}" id="pizza-title">Nome</span>
+		</h1>
+		<div class="pizza-container">
+			<div class="selectedPizzaImg-container">
+				<img th:src="@{${pizza.pathImage}}" alt="Foto di ${pizza.nome}" id="selectedPizzaImg"/>
+			</div>
+			<div class="info-pizza">
+				<div class="ingredienti">
+					<div class="dettagli-pizza">
+						<h1>Ingredienti</h1>
+							<span th:text="'(' + ${pizza.descrizione} + ')'">Descrizione</span>
+					</div>		
+				</div>
+				<div class="prezzo-container">
+					<h2>Prezzo: </h2>
+					<span th:text="${#numbers.formatDecimal(pizza.prezzo, 0, 2)}">Prezzo</span><span> €</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

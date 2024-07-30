@@ -21,7 +21,7 @@ public class Pizza {
 
 	@NotNull
 	private String nome;
-	private List <String> images;
+	private String pathImage;
 
 	private float prezzo;
 	
@@ -44,11 +44,11 @@ public class Pizza {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public List<String> getImages() {
-		return images;
+	public String getPathImage() {
+		return pathImage;
 	}
-	public void setImages(List<String> images) {
-		this.images = images;
+	public void setPathImage(String pathImage) {
+		this.pathImage = pathImage;
 	}
 	public float getPrezzo() {
 		return prezzo;

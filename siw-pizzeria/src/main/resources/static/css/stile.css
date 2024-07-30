@@ -8,6 +8,71 @@ body {
   min-height: 100vh;
 }
 
+/* ----------------------------------------------STILE BARRA RICERCA---------------------------------------------------------------------*/
+.search-container {
+    display: flex; 
+	align-items: center;
+}
+
+.search-form {
+    display: flex;
+	flex-direction: column;    
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	margin-right: 20px;
+	margin-bottom: 15px;
+}
+
+.searchSubmit-container{
+	display: flex;
+	background-color: white;
+	border-radius: 5px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+}
+
+.search-input {   
+    border: none;
+    outline: none;
+    width: 320px; /* Width of the input field */
+    font-size: 16px;
+	border-bottom: 3px solid darkgray; /* Aggiungi una linea sottile sotto il campo di input */
+	background-color: transparent; /* Rimuove il colore di sfondo per mostrare solo la sottolineatura */
+}
+
+.search-input:focus {
+    border-bottom: 3px solid black; /* Cambia il colore della sottolineatura quando il campo è attivo */
+}
+
+.search-button {
+    background-color:white;
+    border: none;
+    color:black;
+    width: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	border-radius: 10px;
+}
+
+.search-button i {
+    font-size: 18px;
+}
+
+.search-button:hover {
+    background-color: grey;
+}
+
+.search-input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+.error-container{
+	display: flex;
+	margin-bottom: 0px;
+}
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
 .logo {
   display: block;
   margin: 0 auto 20px;
@@ -18,10 +83,17 @@ body {
   
 }
 
+.logo-secondarie{
+	display: flex;
+	justify-content: center;
+}
+
 .header-container {
   display: flex; /* Visualizza i container uno accanto all'altro */
   justify-content: flex-end;
-  background-color: black;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+  height: 180px;
 }
 
 .header-item {
@@ -35,9 +107,6 @@ body {
 
 #siwPizzeria{
 	height: 90px;
-	margin-right: 400px;
-	margin-top: 22px;
-	margin-left: 20px;
 }
 .image {
     width: 90px;
@@ -85,6 +154,8 @@ a {
    align-items: center;
    justify-content: center;
    background-color: rgb(0, 0, 0, 0.8); /* Sfondo bianco semi-trasparente */
+   border-radius: 15px;
+   overflow: hidden; /* Nasconde l'overflow orizzontale */
  }
  .primo-swiper-slide {
      display: flex;
@@ -118,6 +189,7 @@ a {
      }
  #slider-img{
 	background-color: rgb(255, 128, 64, 0.9);
+	border-radius: 10px;
  }
  .price{
 	color: white;
@@ -242,9 +314,10 @@ a {
 	background-color: rgb(255, 128, 64, 0.9);
 	width:500px;
 	height:205px;
+	border-radius: 10px;
 }
  /*-----------------------------------------------------------------------------------------------------------------------------------*/
-a.red-button {
+.red-button {
   display: inline-block;
   padding: 10px 20px;
   background-color: #dc3545; /* Colore rosso */
@@ -256,4 +329,25 @@ a.red-button {
 
 a.red-button:hover {
   background-color: #c82333; /* Cambia il colore al passaggio del mouse */
+}
+#button-cerca-pizza{
+	  display: inline-block;
+	  padding: 10px 20px;
+	  background-color: #dc3545; /* Colore rosso */
+	  width: 100px;
+	  color: #fff; /* Colore del testo */
+	  text-decoration: none; /* Rimuovi la sottolineatura */
+	  border-radius: 20px; /* Angoli arrotondati */
+	  transition: background-color 0.3s; /* Animazione al passaggio del mouse */
+	  margin-right: 160px;
+	  font-size: 20px;
+}
+#button-cerca-pizza:hover {
+  background-color: #c82333; /* Cambia il colore al passaggio del mouse */
+}
+.error-message {
+    margin-top: 20px;
+    color: red;
+    font-weight: bold;
+	margin: 8px;
 }

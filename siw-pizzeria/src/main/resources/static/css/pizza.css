@@ -1,0 +1,50 @@
+.main-container{
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(255, 128, 0, 0.9);
+	margin: 20px;
+	border-radius: 20px;
+	border: 8px solid;
+	border-color: black;
+}
+
+.pizza-container{
+	display: flex;
+}
+
+.info-pizza{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.ingredienti{
+	background-color: rgb(255, 255, 255, 0.9);
+	border: 8px solid;
+	border-radius: 15px;
+	border-color: red;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+}
+
+.selectedPizzaImg-container{
+	display: flex;
+	align-items: center;
+}
+
+#selectedPizzaImg{
+	width: 80%;
+	height: 90%;
+	border-radius: 10px;
+}
+
+#pizza-title{
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 45px;
+}
+
+.prezzo-container{
+	font-size: 22px;
+	font-weight: bold;
+}

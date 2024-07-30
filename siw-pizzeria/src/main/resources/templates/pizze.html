@@ -3,18 +3,84 @@
 <head>
     <title>Pizze</title>
     <link rel="stylesheet" href="/css/stile.css?version=2"/>
+	<link rel="stylesheet" href="/css/pizze.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div>
+	
+	<!--HEADER-->
+		<header>
+			<div class="header-container">	
+				<img id="siwPizzeria" src="/images/siwPizzeriaD.gif">
+				
+				<div class="search-container">
+					<form class="search-form" th:action="@{/searchPizza}" method="POST" th:object="${pizza}">
+						<div class="searchSubmit-container">
+							<div class="form-group">
+								<input class="search-input" required type="text" placeholder="Cerca una pizza..." th:field="${pizza.nome}" />
+							</div>
+							<button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+						</div>
+						<div th:if="${#fields.hasErrors('nome')}" class="error-container">
+							<span th:errors="*{nome}" class="error-message"></span>
+						</div>
+					</form>
+				</div>
+				
+				<span>
+					<a href="/" class="header-item">
+									<img src="images/header/pizza.png" alt="Homepage" class="image">
+									<span>HOMEPAGE</span>
+					</a>
+				</span>	
+				<span>
+					<a href="/pizze" class="header-item">
+									<img src="images/header/menu.png" alt="Menu" class="image">
+									<span>MENU</span>
+					</a>
+				</span>	
+				<span>
+					<a href="/ingredienti" class="header-item">
+									<img src="images/header/saliera.png" alt="Ingredienti" class="image">
+									<span>INGREDIENTI</span>
+					</a>
+				</span>		
+				<span>
+					<a href="/orari" class="header-item">
+									<img src="images/header/orologio.png" alt="Orari" class="image">
+									<span>ORARI</span>
+					</a>
+				</span>
+				<span>
+					<a href="/login" class="header-item">
+					                <img src="images/header/loginIcon.png" alt="Account" class="image">
+					                <span>ACCOUNT</span>
+					            </a>
+				</span>
+			</div>
+		</header>
+	
+    <span class="logo-secondarie">
+		<div class="deletePizzaButton">
+			<a href="/formDeletePizza">
+				<img src="/images/pizze/deletePizzaButton.png">
+			</a>
+		</div>
         <a href="/"><img src="/images/logo.jpg" width="30%" class="logo"/></a>
-    </div>
-	    <div class="row-flex-container">
-			<div class="flex-item">
-	        <h1 class="title">Pizze</h1>
+		<div class="addPizzaButton">
+			<a href="/formNewPizza">
+				<img src="/images/pizze/addPizzaButton.png">
+			</a>
+		</div>
+    </span>
+	    <div class="pizze-container">
+			<div class="pizze-item">
+	        <h1 class="title">Menù Pizze</h1>
 	        <div th:if="${pizze.isEmpty()}">Non ci sono pizze inserite</div>
-	        <ul>
-	            <li th:each="pizza : ${pizze}" class="item">
+	        <ul class="pizza-list">
+	            <li th:each="pizza : ${pizze}" class="pizza">
 	                <a th:href="@{'/pizza/' + ${pizza.id}}" th:text="${pizza.nome}" class="orange-button"></a>
+					<img th:src="@{${pizza.pathImage}}" alt="Foto di ${pizza.nome}" class="pizza-image"/>
 	            </li>
 	        </ul>
 	    	</div>

@@ -16,33 +16,48 @@
 	<header>
 		<div class="header-container">	
 			<img id="siwPizzeria" src="/images/siwPizzeriaD.gif">
+			
+			<div class="search-container">
+				<form class="search-form" th:action="@{/searchPizza}" method="POST" th:object="${searchPizza}">
+					<div class="searchSubmit-container">
+				    	<div class="form-group">
+				        	<input class="search-input" required type="text" placeholder="Cerca una pizza..." th:field="${searchPizza.nome}" />
+				        </div>
+				        <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+					</div>
+					<div th:if="${#fields.hasErrors('nome')}" class="error-container">
+						<span th:errors="*{nome}" class="error-message"></span>
+					</div>
+				</form>
+			</div>
+			
 			<span>
 				<a href="/" class="header-item">
-								<img src="images/pizza.png" alt="Homepage" class="image">
+								<img src="images/header/pizza.png" alt="Homepage" class="image">
 								<span>HOMEPAGE</span>
 				</a>
 			</span>	
 			<span>
 				<a href="/pizze" class="header-item">
-								<img src="images/menu.png" alt="Menu" class="image">
+								<img src="images/header/menu.png" alt="Menu" class="image">
 								<span>MENU</span>
 				</a>
 			</span>	
 			<span>
 				<a href="/ingredienti" class="header-item">
-								<img src="images/saliera.png" alt="Ingredienti" class="image">
+								<img src="images/header/saliera.png" alt="Ingredienti" class="image">
 								<span>INGREDIENTI</span>
 				</a>
 			</span>		
 			<span>
 				<a href="/orari" class="header-item">
-								<img src="images/orologio.png" alt="Orari" class="image">
+								<img src="images/header/orologio.png" alt="Orari" class="image">
 								<span>ORARI</span>
 				</a>
 			</span>
 			<span>
 				<a href="/login" class="header-item">
-				                <img src="images/loginIcon.png" alt="Account" class="image">
+				                <img src="images/header/loginIcon.png" alt="Account" class="image">
 				                <span>ACCOUNT</span>
 				            </a>
 			</span>
@@ -53,10 +68,10 @@
 			<div class="flip-img">
 							<div class="flip-img-rotation">
 								<div class="flip-img-front">
-									<img src="/images/gifOrdina.gif">
+									<img src="/images/index-flip/gifOrdina.gif">
 								</div>
 								<div class="flip-img-back">
-									<img src="/images/feedback.png">
+									<img src="/images/index-flip/feedback.png">
 								</div>
 							</div>
 						</div>
@@ -66,10 +81,10 @@
 			<div class="flip-img">
 				<div class="flip-img-rotation">
 					<div class="flip-img-front">
-						<img src="/images/flip1.png">
+						<img src="/images/index-flip/flip1.png">
 					</div>
 					<div class="flip-img-back">
-						<img src="/images/flip2.png">
+						<img src="/images/index-flip/flip2.png">
 					</div>
 				</div>
 			</div>
@@ -80,32 +95,32 @@
 		  <div class="swiper-wrapper primo-wrapper">
 		    <div class="swiper-slide primo-swiper-slide">
 				<div class="nome-pizza">Margherita</div>
-				<img src="/images/margherita.jpg" alt="Pizza Margherita">
+				<img src="/images/swiper-pizze/margherita.jpg" alt="Pizza Margherita">
 				<div class="price">€6.50</div>
 			</div>
 		    <div class="swiper-slide primo-swiper-slide">
 				<div class="nome-pizza">Crostino</div>
-				<img src="/images/crostino.jpg" alt="Pizza Crostino">
+				<img src="/images/swiper-pizze/crostino.jpg" alt="Pizza Crostino">
 				<div class="price">€7.50</div>
 		    </div>
 		    <div class="swiper-slide primo-swiper-slide">
 				<div class="nome-pizza">Patate</div>
-				<img src="/images/patate.jpg" alt="Pizza Patate">
+				<img src="/images/swiper-pizze/patate.jpg" alt="Pizza Patate">
 				<div class="price">€6.50</div>
 			</div>
 			<div class="swiper-slide primo-swiper-slide">
 							<div class="nome-pizza">Wurstel e Patatine</div>
-							<img src="/images/wurstel&patatine.jpg" alt="Pizza Wurstel e Patatine">
+							<img src="/images/swiper-pizze/wurstel&patatine.jpg" alt="Pizza Wurstel e Patatine">
 							<div class="price">€8.00</div>
 						</div>
 			<div class="swiper-slide primo-swiper-slide">
 				<div class="nome-pizza">Diavola</div>
-				<img src="/images/diavola.jpg" alt="Pizza Diavola">
+				<img src="/images/swiper-pizze/diavola.jpg" alt="Pizza Diavola">
 				<div class="price">€8.00</div>
 			</div>
 			<div class="swiper-slide primo-swiper-slide">
 							<div class="nome-pizza">Boscaiola</div>
-							<img src="/images/boscaiola.jpg" alt="Pizza Boscaiola">
+							<img src="/images/swiper-pizze/boscaiola.jpg" alt="Pizza Boscaiola">
 							<div class="price">€8.50</div>
 						</div>
 		    <!-- Aggiungi altre slide qui -->
@@ -141,16 +156,16 @@
 		<div class="carousel">
 		        <div class="carousel-wrapper">
 		            <div class="carousel-item">
-		                <img src="/images/fotoPizza1.png" alt="Immagine 1">
+		                <img src="/images/carosello-pizze/fotoPizza1.png" alt="Immagine 1">
 		            </div>
 		            <div class="carousel-item active">
-		                <img src="/images/fotoPizza2.png" alt="Immagine 2">
+		                <img src="/images/carosello-pizze/fotoPizza2.png" alt="Immagine 2">
 		            </div>
 		            <div class="carousel-item">
-		                <img src="/images/fotoPizza3.png" alt="Immagine 3">
+		                <img src="/images/carosello-pizze/fotoPizza3.png" alt="Immagine 3">
 		            </div>
 					<div class="carousel-item">
-						<img src="/images/fotoPizza4.png" alt="Immagine 4">
+						<img src="/images/carosello-pizze/fotoPizza4.png" alt="Immagine 4">
 					</div>
 		        </div>
 		        <button class="prev"><img src="/images/leftArrow.png" alt="Prev"></button>
@@ -196,10 +211,10 @@
 					<div class="flip-img">
 									<div class="flip-img-rotation">
 										<div class="flip-img-front">
-											<img src="/images/quality.png">
+											<img src="/images/index-flip/quality.png">
 										</div>
 										<div class="flip-img-back">
-											<img src="/images/personale.gif">
+											<img src="/images/index-flip/personale.gif">
 										</div>
 									</div>
 								</div>
@@ -207,10 +222,10 @@
 								<div class="flip-img">
 									<div class="flip-img-rotation">
 										<div class="flip-img-front">
-											<img src="/images/vieniATrovarci.png">
+											<img src="/images/index-flip/vieniATrovarci.png">
 										</div>
 										<div class="flip-img-back">
-											<img src="/images/wait.png">
+											<img src="/images/index-flip/wait.png">
 										</div>
 									</div>
 								</div>
@@ -218,10 +233,10 @@
 								<div class="flip-img">
 									<div class="flip-img-rotation">
 										<div class="flip-img-front">
-											<img src="/images/consegne.png">
+											<img src="/images/index-flip/consegne.png">
 										</div>
 										<div class="flip-img-back">
-											<img src="/images/ora.png">
+											<img src="/images/index-flip/ora.png">
 										</div>
 									</div>
 								</div>
@@ -230,16 +245,10 @@
 		<div class="row-flex-container">
 		<span class="flex-item">
 			<h1>Sezione Pizze</h1>
-			<a href="/pizze" class="red-button">Elenco Pizze</a> 
-			<br>
 			<a href="/formNewPizza" class="red-button">Aggiungi una pizza</a>
-			<br>
-			<a href="/formSearchPizza" class="red-button"> Cerca una pizza</a>
 		</span>
 		<span class="flex-item">
 			<h1>Sezione Ingredienti</h1>
-			<a href="/ingredienti" class="red-button">Elenco Ingredienti</a> 
-			<br>
 			<a href="/formNewIngrediente" class="red-button">Aggiungi un Ingrediente</a>
 			<br>
 		</span>

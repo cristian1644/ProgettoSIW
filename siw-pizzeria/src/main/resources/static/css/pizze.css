@@ -1,0 +1,64 @@
+.pizze-container{
+	display: flex;
+	justify-content: center;
+}
+
+.pizze-container .title{
+	color: white;
+	font-family:cursive;
+}
+	
+.pizze-item {
+	 width: 100%;
+	 background-color: rgb(0, 0, 0, 0.9);
+	 margin: 15px;
+	 border: 10px solid;
+	 border-radius: 20px;
+	 border-color: rgb(255, 128, 0);
+}
+
+.pizza-list {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap; /* permette di andare accapo quando necessario */
+	padding: 0;
+	list-style-type: none;
+}
+
+.pizza-list .pizza {
+	flex: 1 1 calc(33.333% - 20px); /* per mettere 3 elementi in una riga */
+	margin: 10px;
+}
+
+.pizza-list .pizza a {
+	display: block;
+	padding: 10px;
+	background-color: orange;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 5px;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-size: 30px;
+}	
+
+.pizza{
+	max-width: calc(33.333% - 20px); /* Assicura che non superi la larghezza */
+}
+
+.pizza-list .pizza a:hover{
+	background-color: darkorange;
+}
+
+.pizza-image {
+    max-width: 100%;
+	height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.addPizzaButton img, .deletePizzaButton img{
+	height: 380px;
+	width: 380px;
+	border-radius: 20%;
+}
