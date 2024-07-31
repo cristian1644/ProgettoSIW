@@ -1,6 +1,16 @@
 package it.uniroma3.siw.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,6 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Pizza;
 import it.uniroma3.siw.repository.PizzaRepository;
@@ -23,6 +35,9 @@ public class PizzaController {
 	@Autowired private NewPizzaValidator newPizzaValidator;
 	@Autowired private SearchPizzaValidator searchPizzaValidator;
 	@Autowired private PizzaRepository pizzaRepository;
+	
+	@Value("${file.upload-dir}")
+    private String uploadDir;
 
 	@GetMapping("/formNewPizza")
 	public String formNewPizza(Model model) {
@@ -31,18 +46,71 @@ public class PizzaController {
 	}
 
 	@PostMapping("/pizze")
-	public String newPizza(@Valid @ModelAttribute("pizza") Pizza pizza,BindingResult bindingResult, Model model) {
+	public String newPizza(@Valid @ModelAttribute("pizza") Pizza pizza,BindingResult bindingResult,@RequestParam("file") MultipartFile file,Model model) {
 		this.newPizzaValidator.validate(pizza,bindingResult);
 	    if (!bindingResult.hasErrors()) {
+	    	try {
+	    	//gestione del file
+	    	if (!file.isEmpty()) {
+                Path dirPath = Paths.get(uploadDir);
+                if (!Files.exists(dirPath)) {
+                    Files.createDirectories(dirPath);
+                }
+
+                String filename = file.getOriginalFilename();
+                Path filePath = dirPath.resolve(filename);
+                Files.write(filePath, file.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+
+                // Imposta il percorso dell'immagine come URL accessibile
+                String fileUrl = "/uploads/" + filename;
+                pizza.setPathImage(fileUrl);
+
+            }
+	    	
 	      this.pizzaService.save(pizza);
 	      model.addAttribute("pizza", pizza);
 	      return "redirect:pizza/" + pizza.getId();
+	      
+	    	} catch (IOException e) {
+                e.printStackTrace();
+                bindingResult.rejectValue("file", "upload.failed", "Failed to upload file: " + e.getMessage());
+            }
+	      
 	    } else {
 	    	 bindingResult.rejectValue("nome", "pizza.duplicate");
-	      return "formNewPizza.html";
 	    }
-
+	    return "formNewPizza.html";
 	}
+	
+	@GetMapping("/upload")
+    public String getUploadPage() {
+        return "upload";
+    }
+	
+	@PostMapping("/upload")
+    public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return new ResponseEntity<>("File is empty", HttpStatus.BAD_REQUEST);
+        }
+
+        try {
+            // Creare la directory se non esiste
+            File dir = new File(uploadDir);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            // Salvare il file
+            Path path = Paths.get(uploadDir, file.getOriginalFilename());
+            Files.write(path, file.getBytes());
+
+            return new ResponseEntity<>("File uploaded successfully: " + file.getOriginalFilename(), HttpStatus.OK);
+        } catch (IOException e) {
+            // Log dell'errore per il debug
+            e.printStackTrace();
+            return new ResponseEntity<>("Failed to upload file: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 	
 	 @ModelAttribute("searchPizza")
 	    public Pizza createSearchPizzaModel() {

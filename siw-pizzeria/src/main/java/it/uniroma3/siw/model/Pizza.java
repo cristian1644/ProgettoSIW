@@ -68,6 +68,8 @@ public class Pizza {
 	public void setDescrizione(String desc) {
 		this.descrizione = desc;
 	}
+	
+	
 
 	//equals e hashcode
 	@Override

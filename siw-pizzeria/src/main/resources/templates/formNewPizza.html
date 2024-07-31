@@ -65,7 +65,7 @@
 		</span>
     <div class="form-container">
 	  
-	  <form class="form" th:action="@{/pizze}" method="POST" th:object="${pizza}">
+	  <form class="form" th:action="@{/pizze}" method="POST" th:object="${pizza}" enctype="multipart/form-data">
 	  	            <div class="data-container">
 						<h1 class="form-title">Compila i dati della pizza da aggiungere</h1>
 	  	                <div class="form-group">
@@ -78,8 +78,8 @@
 							<input class="input" required type="text" placeholder="Prezzo..." th:field="${pizza.prezzo}" />
 							<h3 class="valuta">€</h3>
 						</div>
-						<div class="form-group">
-							<input class="input" type="text" placeholder="Percorso immagine..." th:field="${pizza.pathImage}" />
+						<div>
+							<input type="file" id="file" name="file" required>
 						</div>
 	  	                <button type="submit" class="submit-button">AGGIUNGI<i class="fa fa-plus icon-margin"></i></button>
 						<div th:if="${#fields.hasErrors('nome')}" class="error-container">
