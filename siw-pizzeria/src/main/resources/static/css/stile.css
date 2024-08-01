@@ -208,6 +208,7 @@ a {
    width: 380px;
    height: 380px;
    perspective: 1000px;
+   padding-bottom: 15px;
    margin: 20px;
  }
  .flip-img-rotation {
@@ -350,4 +351,10 @@ a.red-button:hover {
     color: red;
     font-weight: bold;
 	margin: 8px;
+}
+
+.footer-container{
+	display: flex;
+	height: 200px;
+	background-color: black;
 }

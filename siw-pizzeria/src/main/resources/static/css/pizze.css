@@ -57,6 +57,11 @@
     margin: 0 auto;
 }
 
+#pizzaFumante img, #menuIcon img{
+	height: 450px;
+	width: 450px;
+}
+
 .addPizzaButton img, .deletePizzaButton img{
 	height: 380px;
 	width: 380px;

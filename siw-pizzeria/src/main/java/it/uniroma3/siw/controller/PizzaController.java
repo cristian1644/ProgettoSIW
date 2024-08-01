@@ -1,6 +1,5 @@
 package it.uniroma3.siw.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,8 +8,6 @@ import java.nio.file.StandardOpenOption;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -62,7 +59,7 @@ public class PizzaController {
                 Files.write(filePath, file.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 
                 // Imposta il percorso dell'immagine come URL accessibile
-                String fileUrl = "/uploads/" + filename;
+                String fileUrl = filename;
                 pizza.setPathImage(fileUrl);
 
             }
@@ -80,37 +77,7 @@ public class PizzaController {
 	    	 bindingResult.rejectValue("nome", "pizza.duplicate");
 	    }
 	    return "formNewPizza.html";
-	}
-	
-	@GetMapping("/upload")
-    public String getUploadPage() {
-        return "upload";
-    }
-	
-	@PostMapping("/upload")
-    public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
-        if (file.isEmpty()) {
-            return new ResponseEntity<>("File is empty", HttpStatus.BAD_REQUEST);
-        }
-
-        try {
-            // Creare la directory se non esiste
-            File dir = new File(uploadDir);
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-
-            // Salvare il file
-            Path path = Paths.get(uploadDir, file.getOriginalFilename());
-            Files.write(path, file.getBytes());
-
-            return new ResponseEntity<>("File uploaded successfully: " + file.getOriginalFilename(), HttpStatus.OK);
-        } catch (IOException e) {
-            // Log dell'errore per il debug
-            e.printStackTrace();
-            return new ResponseEntity<>("Failed to upload file: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+	}	
 	
 	 @ModelAttribute("searchPizza")
 	    public Pizza createSearchPizzaModel() {

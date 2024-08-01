@@ -70,7 +70,7 @@
 		</h1>
 		<div class="pizza-container">
 			<div class="selectedPizzaImg-container">
-				<img th:src="@{${pizza.pathImage}}" alt="Foto di ${pizza.nome}" id="selectedPizzaImg"/>
+				<img th:src="@{'/uploads/' + ${pizza.pathImage}}" alt="Foto di ${pizza.nome}" id="selectedPizzaImg"/>
 			</div>
 			<div class="info-pizza">
 				<div class="ingredienti">
@@ -86,6 +86,11 @@
 			</div>
 		</div>
 	</div>
+	<footer>
+		<div class="footer-container">
+			<div>p</div>
+		</div>
+	</footer>
 </body>
 
 </html>
