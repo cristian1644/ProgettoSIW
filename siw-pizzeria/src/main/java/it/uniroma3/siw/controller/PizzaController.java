@@ -42,6 +42,12 @@ public class PizzaController {
 		return "formNewPizza.html";
 	}
 
+	@GetMapping("/login")
+    public String loginPage() {
+        // Assicurati che non ci siano logiche di reindirizzamento non intenzionali qui
+        return "login"; // Nome del template di login
+    }
+	
 	@PostMapping("/pizze")
 	public String newPizza(@Valid @ModelAttribute("pizza") Pizza pizza,BindingResult bindingResult,@RequestParam("file") MultipartFile file,Model model) {
 		this.newPizzaValidator.validate(pizza,bindingResult);

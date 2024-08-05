@@ -19,7 +19,7 @@ public class Credentials {
 	private String role;
 	
 	@OneToOne
-	private User user;
+	private Utente user;
 	
 	//setter e getter
 	
@@ -48,10 +48,10 @@ public class Credentials {
 		this.role = role;
 	}
 	
-	public User getUser() {
+	public Utente getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+	public void setUser(Utente user) {
 		this.user = user;
 	}
 	//equals e hashcode
@@ -69,7 +69,6 @@ public class Credentials {
 			return false;
 		Credentials other = (Credentials) obj;
 		return Objects.equals(password, other.password) && Objects.equals(username, other.username);
-	}
-	
+	}	
 	
 }
