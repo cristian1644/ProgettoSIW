@@ -16,6 +16,7 @@ public class Credentials {
 	private Long id;
 	private String username;
 	private String password;
+	private String email;
 	private String role;
 	
 	@OneToOne
@@ -53,6 +54,13 @@ public class Credentials {
 	}
 	public void setUser(Utente user) {
 		this.user = user;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	//equals e hashcode
 	@Override

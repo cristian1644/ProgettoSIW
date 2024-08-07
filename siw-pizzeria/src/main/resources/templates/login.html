@@ -4,6 +4,7 @@
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 			<link rel="stylesheet" href="/css/stile.css" />
 			<link rel="stylesheet" href="/css/form.css" />
+			<link rel="stylesheet" href="/css/login.css" />
 			<title>
 				Login
 			</title>
@@ -60,25 +61,61 @@
 					</div>
 		</header>
 		
-		<div class="login-container">
-			<form th:action="@{/login}" method="post" class="login-form">
+		<div class="account-container">
+			<div><img src="/images/login/accesso.png" id="imgAccesso"></div>
+			<div class="account-form">
 				<h1><img src="images/login/accountImg.png" id="login-img"></h1>
-				<div class="login-data-container">
-					<h1>ACCEDI</h1>
-						<div>
-					    	<input type="text" id="username" name="username" required class="input" placeholder="Username..."/>
-					    </div>
-					    <div>
-					    	<input type="password" id="password" name="password" required class="input" placeholder="Password..."/>
-					    </div>
-					    <div>
-					    	<button type="submit" id="login-button">LOGIN<i class="fas fa-sign-in-alt"></i></button>
-					    </div>
-					    <div th:if="${param.error}">
-					    	<p style="color: red;">Invalid username or password. Please try again.</p>
-					    </div>
+				<div class="login-registration-container">
+					<form th:action="@{/login}" method="POST" class="login-form">
+						<div class="login-data-container">
+							<h1>ACCEDI</h1>
+								<div>
+							    	<input type="text" id="username" name="username" required class="input" placeholder="Username..."/>
+							    </div>
+							    <div>
+							    	<input type="password" id="password" name="password" required class="input" placeholder="Password..."/>
+							    </div>
+							    <div>
+							    	<button type="submit" id="login-button">LOGIN<i class="fas fa-sign-in-alt"></i></button>
+							    </div>
+							    <div th:if="${param.error}">
+							    	<p style="color: red;">Invalid username or password. Please try again.</p>
+							    </div>
+						</div>
+					</form>
+					
+					<form th:action="@{/registrazione}" method="post" class="registration-form">
+						<div class="registration-data-container">
+							<h1>REGISTRATI</h1>
+							<div>
+								<input type="text" name="nome" required class="input" placeholder="Nome..."/>
+							</div>
+							<div>
+								<input type="text" name="cognome" required class="input" placeholder="Cognome..."/>
+							</div>
+							<div>
+								<input type="text" name="email" required class="input" placeholder="Email..."/>
+							</div>
+							<div>
+								<input type="text" name="username" required class="input" placeholder="Username..."/>
+							</div>
+							<div>
+								<input type="text" name="password" required class="input" placeholder="Password..."/>
+							</div>
+							<div>
+								<button type="submit" id="register-button" class="button">REGISTRATI<i class="fas fa-user-plus"></i></button>
+							</div>
+							<div th:if="${successMessage}" class="registration-complete">
+								<p th:text="${successMessage}"></p>
+							</div>
+							<div th:if="${errorMessage}">
+								<p style="color: red;" th:text="${errorMessage}"></p>
+							</div>
+						</div>
+					</form>
 				</div>
-			</form>
+			</div>
+			<div><img src="/images/login/registrati.png" id="imgRegistrazione"></div>
 		</div>
 		
 		<footer>

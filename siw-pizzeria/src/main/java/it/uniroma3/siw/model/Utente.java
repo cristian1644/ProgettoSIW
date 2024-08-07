@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Utente {
@@ -15,6 +16,9 @@ public class Utente {
 	private Long id;
 	private String nome;
 	private String cognome;
+	
+	@OneToOne(mappedBy = "user")
+    private Credentials credentials;
 	
 	//setter e getter
 	public Long getId() {

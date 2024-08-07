@@ -26,8 +26,8 @@ public class AuthConfiguration{
         http
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                    .requestMatchers(HttpMethod.GET, "/", "/index", "/login", "/register", "/css/**", "/images/**", "/favicon.ico").permitAll()
-                    .requestMatchers(HttpMethod.POST, "/login", "/register").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/", "/index", "/login", "/registrazione", "/css/**", "/images/**", "/favicon.ico").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/login", "/registrazione").permitAll()
                     .requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority("ROLE_ADMIN")
                     .requestMatchers(HttpMethod.POST, "/admin/**").hasAuthority("ROLE_ADMIN")
                     .anyRequest().authenticated()

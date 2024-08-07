@@ -25,15 +25,24 @@ public class CredentialsService {
 		return credentials;
 	}
 	
-	public Credentials creaCredentials(String username, String password, Utente user) {
+	public Credentials creaCredentials(String username, String password, String email,Utente user) {
 		Credentials credentials = new Credentials();
 		credentials.setUsername(username);
 		credentials.setPassword(password);
+		credentials.setEmail(email);
 		credentials.setUser(user);
 		return credentials;
 	}
 	
 	public void saveCredentials(Credentials credentials) {
 		credentialsRepository.save(credentials);
+	}
+	
+	public Credentials findByEmail(String email) {
+		return this.credentialsRepository.findByEmail(email);
+	}
+	
+	public Credentials findByUsername(String username) {
+		return this.credentialsRepository.findByEmail(username);
 	}
 }

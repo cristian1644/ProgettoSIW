@@ -118,10 +118,27 @@
     font-style: italic;
 }
 /*-----------------------------------------------------------------------------------------------------------------------------------*/
-/* ----------------------------------------------FORM LOGIN------------------------------------------------------------------------*/
-.login-container{
+/* ----------------------------------------------FORM LOGIN E REGISTRAZIONE------------------------------------------------------------------------*/
+.account-container{
 	display: flex;
 	justify-content: center;
+	align-items: center;
+}
+
+.account-form{
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(255, 255, 255, 0.9);
+	border: 9px solid rgb(0, 0, 0);
+	border-radius: 7px;
+	padding: 15px;
+}
+
+.login-registration-container{
+	display: flex;
+	justify-content: space-around;
+	width: 1000px;
+	height: auto;
 }
 
 .login-form {
@@ -129,19 +146,16 @@
 	flex-direction: column;    
 	justify-content: center;
 	align-items: center;
-	border: 2px solid rgb(0, 0, 0);
-	border-radius: 5px;
-	padding: 15px;
-	background-color: rgb(255, 255, 255, 0.9);
+	
 }
 
-.login-data-container{
+.login-data-container, .registration-data-container{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: white;
-	border: 2px solid rgb(0, 0, 0);
 	border-radius: 5px;
+	background-color: rgb(255, 255, 255);
+	border: 2px solid rgb(0, 0, 0);
 	padding-left: 20px;
 	padding-right: 20px;
 }
@@ -169,5 +183,29 @@
 #login-img{
 	width: 60%;
 	height: auto;
+}
+
+#register-button{
+	border: none;
+	color:black;
+	cursor: pointer;
+	border-radius: 25px;
+	background-color: rgb(192, 167, 63);
+	font-size: 22px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	padding: 10px;
+}
+
+#register-button i{
+	font-size: 20px;
+	margin-left: 80px;
+}
+
+#register-button:hover {
+    background-color: grey;
+}
+
+.registration-complete p{
+	color: blue;
 }
 /*-----------------------------------------------------------------------------------------------------------------------------------*/

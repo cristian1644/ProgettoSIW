@@ -358,3 +358,9 @@ a.red-button:hover {
 	height: 200px;
 	background-color: black;
 }
+
+.username-display span{
+	color: white;
+	background-color: white;
+	font-size: 50px;
+}
