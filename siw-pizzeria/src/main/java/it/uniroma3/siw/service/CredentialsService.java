@@ -20,8 +20,8 @@ public class CredentialsService {
 		return credentials;
 	}
 	
-	public Optional<Credentials> getCredentials(String username) {
-		Optional<Credentials> credentials = credentialsRepository.findByUsername(username);
+	public Credentials getCredentials(String username) {
+		Credentials credentials = credentialsRepository.findByUsername(username);
 		return credentials;
 	}
 	
@@ -43,6 +43,6 @@ public class CredentialsService {
 	}
 	
 	public Credentials findByUsername(String username) {
-		return this.credentialsRepository.findByEmail(username);
+		return this.credentialsRepository.findByUsername(username);
 	}
 }

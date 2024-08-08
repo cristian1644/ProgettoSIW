@@ -102,8 +102,9 @@ public class PizzaController {
 	}
 
 	 @GetMapping("/")
-	    public String index(Model model) {
+	    public String index(Model model, Authentication authentication) {
 	        model.addAttribute("searchPizza", new Pizza());
+	        model.addAttribute("authentication", authentication);
 	        return "index"; 
 	    }
 	
@@ -123,13 +124,15 @@ public class PizzaController {
 
 
 	@GetMapping("/pizza/{id}")
-	public String getPizza(@PathVariable("id") Long id,Model model) {
+	public String getPizza(@PathVariable("id") Long id,Model model,Authentication authentication) {
+		model.addAttribute("authentication", authentication);
 		model.addAttribute("pizza",this.pizzaService.findById(id));
 		return "pizza.html";
 	}
 
 	@GetMapping("/pizze")
-	public String showPizze(Model model) {
+	public String showPizze(Model model, Authentication authentication) {
+		model.addAttribute("authentication", authentication);
 		model.addAttribute("pizze",this.pizzaService.findAll());
 		model.addAttribute("pizza", new Pizza()); // Aggiungi l'oggetto pizza al modello
 		return "pizze.html";

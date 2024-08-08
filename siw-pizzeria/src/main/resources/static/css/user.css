@@ -1,0 +1,58 @@
+.main-container{
+	display: flex;
+	align-items: center;
+}
+
+.profile-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	height: 900px;
+	background-color: black;
+	border-radius: 10px;
+}
+
+.details-user-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-top: 70px;
+}
+
+#vedi-dettagli-img{
+	width: 380px;
+	height: auto;
+	margin-right: -350px;
+	border-radius: 10px;
+}
+
+.details-item{
+	color: white;
+	font-size: 23px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#logout-img{
+	width: 380px;
+	height: auto;
+	margin-left: -350px;
+	border-radius: 10px;
+}
+
+#your-profile-img{
+	width: 800px;
+	height: auto;
+	border-radius: 10px;
+}
+
+.logout-link{
+	display: inline-block;
+}
+
+#logOut-icon, #yourOrders-icon{
+	width: 150px;
+	height: auto;
+	border: 1px solid;
+	border-color: white;
+	border-radius: 10px;
+}

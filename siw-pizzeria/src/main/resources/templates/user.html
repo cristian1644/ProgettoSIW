@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+		<link rel="stylesheet" href="/css/stile.css" />
+		<link rel="stylesheet" href="/css/user.css" />
+		<title>
+			Profilo Utente
+		</title>
+</head>
+<body>
+	<nav></nav>
+		<!--HEADER-->
+		<header>
+			<div class="header-container">	
+				<img id="siwPizzeria" src="/images/siwPizzeriaD.gif">
+				
+				<div class="search-container">
+					<form class="search-form" th:action="@{/searchPizza}" method="POST" th:object="${searchPizza}">
+						<div class="searchSubmit-container">
+					    	<div class="form-group">
+					        	<input class="search-input" required type="text" placeholder="Cerca una pizza..." th:field="${searchPizza.nome}" />
+					        </div>
+					        <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+						</div>
+						<div th:if="${#fields.hasErrors('nome')}" class="error-container">
+							<span th:errors="*{nome}" class="error-message"></span>
+						</div>
+					</form>
+				</div>
+				
+				<span>
+					<a href="/" class="header-item">
+									<img src="images/header/pizza.png" alt="Homepage" class="image">
+									<span>HOMEPAGE</span>
+					</a>
+				</span>	
+				<span>
+					<a href="/pizze" class="header-item">
+									<img src="images/header/menu.png" alt="Menu" class="image">
+									<span>MENU</span>
+					</a>
+				</span>	
+				<span>
+					<a href="/ingredienti" class="header-item">
+									<img src="images/header/saliera.png" alt="Ingredienti" class="image">
+									<span>INGREDIENTI</span>
+					</a>
+				</span>		
+				<span>
+					<a href="/orari" class="header-item">
+									<img src="images/header/orologio.png" alt="Orari" class="image">
+									<span>ORARI</span>
+					</a>
+				</span>
+				<span>
+					<a th:href="${authentication != null ? '/user' : '/login'}" class="header-item">
+				    	<img src="images/header/loginIcon.png" alt="Account" class="image">
+						<span class="user-link">
+					        <span>ACCOUNT</span>
+					        <span th:if="${authentication != null}">
+					        	<p id="user"><span th:text="${authentication.principal.username}">No Username</span></p>
+					        </span>
+						</span>
+				   </a>
+				</span>
+			</div>
+		</header>
+		
+		<section>
+			<div class="main-container">
+				<div><img src="/images/user/profilo.png" id="vedi-dettagli-img"></div>
+				<div class="profile-container">
+					<span><img src="/images/user/yourProfile.png" id="your-profile-img"></span>
+					<div class="details-user-container" th:if="${authentication != null}">
+						<div class="details-item">Username: <span th:text="${authentication.principal.username}">No Username</span></div>
+						 <div th:if="${credentials != null}">
+						    <p class="details-item">Email: <span th:text="${credentials.email}">No Email</span></p>
+						    <p class="details-item">Nome: <span th:text="${credentials.user.nome}">No Nome</span></p>
+						    <p class="details-item">Cognome: <span th:text="${credentials.user.cognome}">No Cognome</span></p>
+						 </div>
+					</div>
+					
+					<span>
+			            <!-- Link Ordini utente -->
+			            <a href="/ordini" class="logout-link">
+			                <img src="images/user/userOrders.png" alt="Logout" id="yourOrders-icon">
+			            </a>
+			        </span>
+					
+					<span>
+			            <!-- Link di logout -->
+			            <a href="/logout" class="logout-link">
+			                <img src="images/user/logoutIcon.png" alt="Logout" id="logOut-icon">
+			            </a>
+			        </span>
+				</div>
+				<div><img src="/images/user/logout.png" id="logout-img"></div>
+			</div>
+		</section>
+		
+		<footer>
+			<div class="footer-container">
+				<div>p</div>
+			</div>
+		</footer>
+</body>
+</html>
