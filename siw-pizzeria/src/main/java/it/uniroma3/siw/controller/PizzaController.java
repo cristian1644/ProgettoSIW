@@ -48,13 +48,15 @@ public class PizzaController {
 	}
 
 	@GetMapping("/login")
-    public String loginPage() {
-        // Assicurati che non ci siano logiche di reindirizzamento non intenzionali qui
-        return "login"; // Nome del template di login
+    public String loginPage(Model model) {
+		model.addAttribute("credentials", new Credentials());
+        return "login";
     }
 	
 	@PostMapping("/pizze")
-	public String newPizza(@Valid @ModelAttribute("pizza") Pizza pizza,BindingResult bindingResult,@RequestParam("file") MultipartFile file,Model model) {
+	public String newPizza(@Valid @ModelAttribute("pizza") Pizza pizza,BindingResult bindingResult,
+			@RequestParam("file") MultipartFile file,Model model) {
+		
 		this.newPizzaValidator.validate(pizza,bindingResult);
 	    if (!bindingResult.hasErrors()) {
 	    	try {

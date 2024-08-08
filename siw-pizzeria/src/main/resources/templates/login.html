@@ -78,13 +78,13 @@
 							    <div>
 							    	<button type="submit" id="login-button">LOGIN<i class="fas fa-sign-in-alt"></i></button>
 							    </div>
-							    <div th:if="${param.error}">
-							    	<p style="color: red;">Invalid username or password. Please try again.</p>
+								<div th:if="${param.error}">
+							        <span th:text="#{invalid.credentials}" class="error-message"></span>
 							    </div>
 						</div>
 					</form>
 					
-					<form th:action="@{/registrazione}" method="post" class="registration-form">
+					<form th:action="@{/registrazione}" method="post" th:object="${credentials}"  class="registration-form">
 						<div class="registration-data-container">
 							<h1>REGISTRATI</h1>
 							<div>
@@ -106,10 +106,13 @@
 								<button type="submit" id="register-button" class="button">REGISTRATI<i class="fas fa-user-plus"></i></button>
 							</div>
 							<div th:if="${successMessage}" class="registration-complete">
-								<p th:text="${successMessage}"></p>
+								<p th:text="${successMessage}" id="successMessage"></p>
 							</div>
-							<div th:if="${errorMessage}">
-								<p style="color: red;" th:text="${errorMessage}"></p>
+							<div th:if="${#fields.hasErrors('email')}" class="error-container">
+								<span th:errors="*{email}" class="error-message"></span>
+							</div>
+							<div th:if="${#fields.hasErrors('username')}" class="error-container">
+								<span th:errors="*{username}" class="error-message"></span>
 							</div>
 						</div>
 					</form>

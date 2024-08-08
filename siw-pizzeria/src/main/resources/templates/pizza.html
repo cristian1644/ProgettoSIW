@@ -78,10 +78,11 @@
 				<img th:src="@{'/uploads/' + ${pizza.pathImage}}" alt="Foto di ${pizza.nome}" id="selectedPizzaImg"/>
 			</div>
 			<div class="info-pizza">
+				<div><img src="/images/pizza/pizzaiolo.png" id="pizzaioloImg"></div>
 				<div class="ingredienti">
 					<div class="dettagli-pizza">
 						<h1>Ingredienti</h1>
-							<span th:text="'(' + ${pizza.descrizione} + ')'">Descrizione</span>
+							<span th:text="'(' + ${pizza.descrizione} + ')'" id="elenco-ingredienti">Descrizione</span>
 					</div>		
 				</div>
 				<div class="prezzo-container">

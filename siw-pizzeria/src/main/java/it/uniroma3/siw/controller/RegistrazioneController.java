@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,9 +21,11 @@ import it.uniroma3.siw.model.Pizza;
 import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.UserService;
+import it.uniroma3.siw.validator.CredentialsValidator;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 
 @Controller
 public class RegistrazioneController {
@@ -30,6 +33,7 @@ public class RegistrazioneController {
 	@Autowired private UserService userService;
 	@Autowired private CredentialsService credentialsService;
 	@Autowired private PasswordEncoder passwordEncoder;
+	@Autowired private CredentialsValidator credentialsValidator;
 	
 	@ModelAttribute("searchPizza")
     public Pizza createSearchPizzaModel() {
@@ -37,23 +41,28 @@ public class RegistrazioneController {
     }
 	
 	@PostMapping("/registrazione")
-    public String registraUtente(@RequestParam String nome, @RequestParam String cognome, @RequestParam String email,
-            @RequestParam String username, @RequestParam String password, RedirectAttributes redirectAttributes) {
+    public String registraUtente(@Valid @ModelAttribute("credentials") Credentials credentials, 
+            BindingResult bindingResult, @RequestParam String nome, @RequestParam String cognome,
+            RedirectAttributes redirectAttributes, Model model) {
     	
-        if (credentialsService.findByEmail(email) != null) {
-        	redirectAttributes.addAttribute("errorMessage", "Errore: Email già utilizzata.");
-            return "redirect:/login";
-        }
-
-        Utente user = userService.creaUtente(nome, cognome);
-        this.userService.saveUser(user);
-        
-        String encodedPassword = passwordEncoder.encode(password); //codifico la password prima di salvarla nel db
-        Credentials credentials = credentialsService.creaCredentials(username, encodedPassword ,email, user);
-        this.credentialsService.saveCredentials(credentials);
-        redirectAttributes.addFlashAttribute("successMessage", "Registrazione avvenuta con successo!");
-
-        return "redirect:/login";
+		this.credentialsValidator.validate(credentials, bindingResult);
+		
+		if(!bindingResult.hasErrors()) {
+	        Utente user = userService.creaUtente(nome, cognome);
+	        this.userService.saveUser(user);
+	        
+	        String encodedPassword = passwordEncoder.encode(credentials.getPassword()); //codifico la password
+	        credentials.setPassword(encodedPassword); //la cripto prima di salvarla nel db
+	        credentials.setUser(user);
+	        this.credentialsService.saveCredentials(credentials);
+	        
+	        redirectAttributes.addFlashAttribute("successMessage", "Registrazione avvenuta con successo!");
+	
+	        return "redirect:/login";
+		}
+		model.addAttribute("credentials", credentials);
+		
+		return "login";
     }
 	
 	@GetMapping("/user")
@@ -77,4 +86,5 @@ public class RegistrazioneController {
 	    }
 	    return "redirect:/";
 	}
+	
 }

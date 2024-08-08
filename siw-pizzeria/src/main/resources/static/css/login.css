@@ -3,3 +3,15 @@
 	height: auto;
 	border-radius: 15px;
 }
+
+.error-message {
+    margin-top: 20px;
+    color: red;
+    font-weight: bold;
+}
+
+#successMessage{
+	color: blue;
+	font-weight: bold;
+	margin-top: 15px;
+}
