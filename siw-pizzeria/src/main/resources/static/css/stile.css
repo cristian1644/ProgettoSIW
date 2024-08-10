@@ -306,7 +306,8 @@ a {
     padding: 10px;
     cursor: pointer;
     z-index: 1;
-	background-color: rgb(255, 255, 255, 0.8);
+	background-color: rgb(255, 255, 255);
+	border-radius: 15px;
 }
 
 .prev img, .next img {
@@ -324,7 +325,7 @@ a {
 #carosello-img{
 	background-color: rgb(255, 128, 64, 0.9);
 	width:500px;
-	height:205px;
+	height:auto;
 	border-radius: 10px;
 }
  /*-----------------------------------------------------------------------------------------------------------------------------------*/
