@@ -29,31 +29,31 @@
 				
 				<span>
 					<a href="/" class="header-item">
-									<img src="images/header/pizza.png" alt="Homepage" class="image">
+									<img src="/images/header/pizza.png" alt="Homepage" class="image">
 									<span>HOMEPAGE</span>
 					</a>
 				</span>	
 				<span>
-					<a href="/redirectByRole" class="header-item">
-									<img src="images/header/menu.png" alt="Menu" class="image">
+					<a href="/pizze" class="header-item">
+									<img src="/images/header/menu.png" alt="Menu" class="image">
 									<span>MENU</span>
 					</a>
 				</span>	
 				<span>
 					<a href="/ingredienti" class="header-item">
-									<img src="images/header/saliera.png" alt="Ingredienti" class="image">
+									<img src="/images/header/saliera.png" alt="Ingredienti" class="image">
 									<span>INGREDIENTI</span>
 					</a>
 				</span>		
 				<span>
 					<a href="/orari" class="header-item">
-									<img src="images/header/orologio.png" alt="Orari" class="image">
+									<img src="/images/header/orologio.png" alt="Orari" class="image">
 									<span>ORARI</span>
 					</a>
 				</span>
 				<span>
 					<a th:href="${authentication != null ? '/user' : '/login'}" class="header-item">
-				    	<img src="images/header/loginIcon.png" alt="Account" class="image">
+				    	<img src="/images/header/loginIcon.png" alt="Account" class="image">
 						<span class="user-link">
 					        <span>ACCOUNT</span>
 					        <span th:if="${authentication != null}">
@@ -75,14 +75,27 @@
     </span>
 	    <div class="pizze-container">
 			<div class="pizze-item">
-	        <img src="/images/pizze/menuPizzeImg.png" id="menuPizzeImg">
-	        <div th:if="${pizze.isEmpty()}">Non ci sono pizze inserite</div>
-	        <ul class="pizza-list">
-	            <li th:each="pizza : ${pizze}" class="pizza">
-	                <a th:href="@{'/pizza/' + ${pizza.id}}" th:text="${pizza.nome}" class="orange-button"></a>
-					<img th:src="@{'/uploads/' + ${pizza.pathImage}}" alt="Foto di ${pizza.nome}" class="pizza-image"/>
-	            </li>
-	        </ul>
+				<div class="titleButtons-container">
+					<div>
+						<a href="/formNewPizza">
+							<button type="submit" class="addPizzaButton">AGGIUNGI UNA PIZZA<i class="fa fa-plus icon-margin"></i></button>
+						</a>	
+					</div>	
+			        <div><img src="/images/pizze/menuPizzeImg.png" id="menuPizzeImg"></div>
+					<div>
+						<a href="/formDeletePizza">
+							<button type="submit" class="deletePizzaButton">ELIMINA UNA PIZZA<i class="fa fa-trash"></i></button>
+						</a>
+					</div>
+				</div>
+				
+		        <div th:if="${pizze.isEmpty()}">Non ci sono pizze inserite</div>
+		        <ul class="pizza-list">
+		            <li th:each="pizza : ${pizze}" class="pizza">
+		                <a th:href="@{'/pizza/' + ${pizza.id}}" th:text="${pizza.nome}" class="orange-button"></a>
+						<img th:src="@{'/uploads/' + ${pizza.pathImage}}" alt="Foto di ${pizza.nome}" class="pizza-image"/>
+		            </li>
+		        </ul>
 	    	</div>
 		</div>
 		<footer>

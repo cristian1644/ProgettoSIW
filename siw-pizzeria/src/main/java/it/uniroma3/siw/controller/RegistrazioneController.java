@@ -54,6 +54,7 @@ public class RegistrazioneController {
 	        String encodedPassword = passwordEncoder.encode(credentials.getPassword()); //codifico la password
 	        credentials.setPassword(encodedPassword); //la cripto prima di salvarla nel db
 	        credentials.setUser(user);
+	        credentials.setRole("ROLE_USER");
 	        this.credentialsService.saveCredentials(credentials);
 	        
 	        redirectAttributes.addFlashAttribute("successMessage", "Registrazione avvenuta con successo!");

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,6 +29,8 @@ public class AuthConfiguration{
                     .requestMatchers(HttpMethod.POST, "/login", "/registrazione").permitAll()
                     .requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority("ROLE_ADMIN")
                     .requestMatchers(HttpMethod.POST, "/admin/**").hasAuthority("ROLE_ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/admin/pizze").hasAuthority("ROLE_ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/user/pizze").hasAuthority("ROLE_USER")
                     .anyRequest().authenticated()
             )
             .formLogin(formLogin ->

@@ -5,3 +5,5 @@ insert into pizza (id, descrizione, nome, prezzo, path_image) values(nextval('pi
 insert into ingrediente (id, nome) values(nextval('ingrediente_seq'), 'mozzarella');
 insert into utente(id, nome, cognome) values(nextval('utente_seq'), 'mario', 'rossi');
 insert into credentials(id, username, password, role, user_id, email) values(nextval('credentials_seq'), 'mario', 'mario', 'ROLE_ADMIN', 1, 'mario.rossi@gmail.com'); 
+insert into utente(id, nome, cognome) values(nextval('utente_seq'), 'luca', 'bianchi');
+insert into credentials(id, username, password, role, user_id, email) values(nextval('credentials_seq'), 'luca', 'luca', 'ROLE_USER', 51, 'luca.bianchi@gmail.com');
