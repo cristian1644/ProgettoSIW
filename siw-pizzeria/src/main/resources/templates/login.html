@@ -106,7 +106,7 @@
 								<button type="submit" id="register-button" class="button">REGISTRATI<i class="fas fa-user-plus"></i></button>
 							</div>
 							<div th:if="${successMessage}" class="registration-complete">
-								<p th:text="${successMessage}" id="successMessage"></p>
+								<p th:text="${successMessage}" class="successMessage"></p>
 							</div>
 							<div th:if="${#fields.hasErrors('email')}" class="error-container">
 								<span th:errors="*{email}" class="error-message"></span>

@@ -370,6 +370,12 @@ a.red-button:hover {
 	background-color: black;
 }
 
+.successMessage{
+	color: blue;
+	font-weight: bold;
+	margin-top: 15px;
+}
+
 #user{
 	color: white
 }

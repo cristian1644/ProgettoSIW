@@ -147,8 +147,24 @@ public class PizzaController {
     public String removePizza(@Valid @ModelAttribute("pizzaRemove") Pizza pizzaRemove, BindingResult bindingResult, Model model) {
         this.rimuoviPizzaValidator.validate(pizzaRemove, bindingResult);
         if(!bindingResult.hasErrors()) {
+        	//recupero la pizza direttamente dal db per poter eliminare la foto
+        	 Pizza pizzaToDelete = this.pizzaRepository.findByNome(pizzaRemove.getNome());
+        	
+        	//rimuovo la foto
+        	if(pizzaToDelete.getPathImage() != null) {
+        		Path imagePath = Paths.get(uploadDir, pizzaToDelete.getPathImage());
+        		try {
+                    Files.deleteIfExists(imagePath);
+                    System.out.println("Image deleted: " + imagePath);
+                } catch (IOException e) {
+                    System.err.println("Failed to delete image: " + e.getMessage());
+                    bindingResult.rejectValue("nome", "delete.failed", "Errore nella rimozione dell'immagine.");
+                    return "admin-gestionePizze";
+                }
+        	}
+        	
         	this.pizzaService.delete(this.pizzaRepository.findByNome(pizzaRemove.getNome()));
-        	model.addAttribute("successMessage", "Pizza rimossa con successo");
+        	model.addAttribute("successMessage", "Pizza rimossa con successo!");
         }else {
         	bindingResult.rejectValue("nome", "pizza.notExists");
         }
