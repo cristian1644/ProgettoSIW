@@ -1,0 +1,10 @@
+#adminLogo, #adminImg{
+	width: 370px;
+	height: auto;
+}
+
+#adminImg{
+	width: 370px;
+	height: auto;
+	border-radius: 100%;
+}

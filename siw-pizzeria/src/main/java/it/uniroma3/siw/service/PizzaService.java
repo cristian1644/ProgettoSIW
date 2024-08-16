@@ -30,4 +30,8 @@ public class PizzaService {
 	    // TODO Auto-generated method stub
 	    pizzaRepository.save(pizza);
 	  }
+	  
+	  public void delete(Pizza pizza) {
+		  pizzaRepository.delete(pizza);
+	  }
 }

@@ -19,7 +19,6 @@
 
 .titleButtons-container{
 	display: flex;
-	align-items: center;
 }
 
 .pizza-list {
@@ -58,7 +57,13 @@
 #menuPizzeImg{
 	width: 450px;
 	height: auto;
-	margin-top: 25px;
+	margin-left: 550px;
+}
+
+#menuPizzeImgUser{
+	width: 450px;
+	height: auto;
+	margin-top: 35px;
 }
 
 .pizza-image {
@@ -73,7 +78,7 @@
 	width: 450px;
 }
 /* --------------------------------------------------STILE ADMIN PAGE---------------------------------------------------------------------*/
-.addPizzaButton, .deletePizzaButton{
+.gestisciPizzeButton{
     border: none;
     color:black;
     cursor: pointer;
@@ -83,9 +88,9 @@
 	background-color: rgb(192, 167, 63);
 	font-size: 22px;
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	padding: 15px;
+	padding: 15px;	
 }
-.fa-plus, .fa-trash{
+.fa-wrench{
 	margin-left: 70px;
 }
 /*----------------------------------------------------------------------------------------------------------------------------------------*/

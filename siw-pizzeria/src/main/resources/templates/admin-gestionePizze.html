@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nuova pizza</title>
+    <link rel="stylesheet" href="/css/stile.css?version=3" />
+	<link rel="stylesheet" href="/css/form.css" />
+	<link rel="stylesheet" href="/css/gestionePizze.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+	
+	<!--HEADER-->
+		<header>
+			<div class="header-container">	
+				<img id="siwPizzeria" src="/images/siwPizzeriaD.gif">
+				
+				<div class="search-container">
+					<form class="search-form" th:action="@{/searchPizza}" method="POST" th:object="${searchPizza}">
+						<div class="searchSubmit-container">
+					    	<div class="form-group">
+					        	<input class="search-input" required type="text" placeholder="Cerca una pizza..." th:field="${searchPizza.nome}" />
+					        </div>
+					        <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+						</div>
+						<div th:if="${#fields.hasErrors('nome')}" class="error-container">
+							<span th:errors="*{nome}" class="error-message"></span>
+						</div>
+					</form>
+				</div>
+				
+				<span>
+					<a href="/" class="header-item">
+									<img src="/images/header/pizza.png" alt="Homepage" class="image">
+									<span>HOMEPAGE</span>
+					</a>
+				</span>	
+				<span>
+					<a href="/redirectByRole" class="header-item">
+									<img src="/images/header/menu.png" alt="Menu" class="image">
+									<span>MENU</span>
+					</a>
+				</span>	
+				<span>
+					<a href="/ingredienti" class="header-item">
+									<img src="/images/header/saliera.png" alt="Ingredienti" class="image">
+									<span>INGREDIENTI</span>
+					</a>
+				</span>		
+				<span>
+					<a href="/orari" class="header-item">
+									<img src="/images/header/orologio.png" alt="Orari" class="image">
+									<span>ORARI</span>
+					</a>
+				</span>
+				<span>
+					<a th:href="${authentication != null ? '/user' : '/login'}" class="header-item">
+					                <img src="/images/header/loginIcon.png" alt="Account" class="image">
+									<span class="user-link">
+								        <span>ACCOUNT</span>
+								        <span th:if="${authentication != null}">
+								        	<p id="user"><span th:text="${authentication.principal.username}">No Username</span></p>
+								        </span>
+									</span>
+					            </a>
+				</span>
+			</div>
+		</header>
+	
+		<div class="row-flex-container">
+			<div>
+				<img src="/images/gestionePizze/adminIcon.png" id="adminLogo">	
+			</div>
+			<span>
+				<img src="/images/newLogo.png" width="35%" class="logo"/>
+			</span>
+			<div>
+				<img src="/images/gestionePizze/adminImg.png" id="adminImg">
+			</div>
+		</div>
+		
+		<div class="gestione-container">
+			<div class="form-gestione">
+				<div><img src="/images/gestionePizze/gestionePizze.png" id="imgGestione"></div>
+					<div class="add-remove-container">
+						
+						<form class="add-form" th:action="@{/pizze}" method="POST" th:object="${pizza}" enctype="multipart/form-data">
+							<div class="add-data-container">
+								<h1 class="form-title">Aggiungi pizza</h1>
+			  	                <div class="form-group">
+			  	                    <input class="input" required type="text" placeholder="Nome..." th:field="${pizza.nome}" />
+			  	                </div>
+								<div class="form-group">
+									<input class="input" required type="text" placeholder="Descrizione..." th:field="${pizza.descrizione}" />
+								</div>
+								<div class="price-container">
+									<input class="input" required type="text" placeholder="Prezzo..." th:field="${pizza.prezzo}" />
+									<h3 class="valuta">€</h3>
+								</div>
+								<div class="file-container">
+									<input type="file" id="file" name="file" required>
+								</div>
+			  	                <button type="submit" id="add-button">AGGIUNGI<i class="fa fa-plus icon-margin"></i></button>
+								<div th:if="${#fields.hasErrors('nome')}" class="error-container">
+									<span th:errors="*{nome}" class="error-message"></span>
+								</div>
+							</div>
+						</form>
+						
+						<form class="remove-form" th:action="@{/rimuovi}" th:object="${pizzaRemove}" method="POST">
+							<div class="remove-data-container">
+								<h1 class="form-title">Rimuovi pizza</h1>
+								<div class="form-group">
+			  	                    <input class="input" required type="text" placeholder="Nome..." th:field="*{nome}" />
+			  	                </div>
+								<button type="submit" id="remove-button">RIMUOVI<i class="fa fa-trash"></i></button>
+								<div th:if="${#fields.hasErrors('nome')}" class="error-container">
+									<span th:errors="*{nome}" class="error-message"></span>
+								</div>
+								<div th:if="${successMessage}" class="registration-complete">
+									<p th:text="${successMessage}" id="successMessage"></p>
+								</div>
+							</div>
+						</form>
+						
+					</div>
+			</div>
+		</div>
+
+	<footer>
+		<div class="footer-container">
+			<div>p</div>
+		</div>
+	</footer>
+  </body>
+</html>

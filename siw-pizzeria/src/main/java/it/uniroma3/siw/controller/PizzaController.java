@@ -27,6 +27,7 @@ import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.PizzaService;
 import it.uniroma3.siw.service.UserService;
 import it.uniroma3.siw.validator.NewPizzaValidator;
+import it.uniroma3.siw.validator.RimuoviPizzaValidator;
 import it.uniroma3.siw.validator.SearchPizzaValidator;
 import jakarta.validation.Valid;
 
@@ -37,6 +38,7 @@ public class PizzaController {
 	@Autowired private NewPizzaValidator newPizzaValidator;
 	@Autowired private SearchPizzaValidator searchPizzaValidator;
 	@Autowired private PizzaRepository pizzaRepository;
+	@Autowired private RimuoviPizzaValidator rimuoviPizzaValidator;
 	
 	@Value("${file.upload-dir}")
     private String uploadDir;
@@ -87,9 +89,10 @@ public class PizzaController {
             }
 	      
 	    } else {
-	    	 bindingResult.rejectValue("nome", "pizza.duplicate");
+	    	model.addAttribute("pizzaRemove", new Pizza());
+	    	bindingResult.rejectValue("nome", "pizza.duplicate");
 	    }
-	    return "formNewPizza.html";
+	    return "admin-gestionePizze";
 	}	
 	
 	 @ModelAttribute("searchPizza")
@@ -136,8 +139,21 @@ public class PizzaController {
 	public String showPizze(Model model, Authentication authentication) {
 		model.addAttribute("authentication", authentication);
 		model.addAttribute("pizze",this.pizzaService.findAll());
-		model.addAttribute("pizza", new Pizza()); // Aggiungi l'oggetto pizza al modello
+		model.addAttribute("pizza", new Pizza());
 		return "pizze.html";
 	}
 	
+	@PostMapping("/rimuovi")
+    public String removePizza(@Valid @ModelAttribute("pizzaRemove") Pizza pizzaRemove, BindingResult bindingResult, Model model) {
+        this.rimuoviPizzaValidator.validate(pizzaRemove, bindingResult);
+        if(!bindingResult.hasErrors()) {
+        	this.pizzaService.delete(this.pizzaRepository.findByNome(pizzaRemove.getNome()));
+        	model.addAttribute("successMessage", "Pizza rimossa con successo");
+        }else {
+        	bindingResult.rejectValue("nome", "pizza.notExists");
+        }
+        
+        model.addAttribute("pizza", new Pizza());
+        return "admin-gestionePizze";
+    }
 }
