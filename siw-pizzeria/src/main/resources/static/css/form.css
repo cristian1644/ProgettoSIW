@@ -179,7 +179,7 @@
 	margin-left: 80px;
 }
 
-#login-button:hover {
+#login-button:hover ,#add-button:hover, #remove-button:hover{
     background-color: grey;
 }
 

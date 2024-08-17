@@ -90,6 +90,11 @@
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	padding: 15px;	
 }
+
+.gestisciPizzeButton:hover{
+	background-color: grey;
+}
+
 .fa-wrench{
 	margin-left: 70px;
 }

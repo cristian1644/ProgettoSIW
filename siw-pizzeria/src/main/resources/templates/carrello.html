@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+		<link rel="stylesheet" href="/css/stile.css" />
+		<link rel="stylesheet" href="/css/carrello.css" />
+		<title>
+			Il tuo carrello
+		</title>
+	</head>
+	<body>
+		<nav></nav>
+		<header>
+			<div class="header-container">	
+				<img id="siwPizzeria" src="/images/siwPizzeriaD.gif">
+				
+				<div class="search-container">
+					<form class="search-form" th:action="@{/searchPizza}" method="POST" th:object="${searchPizza}">
+						<div class="searchSubmit-container">
+					    	<div class="form-group">
+					        	<input class="search-input" required type="text" placeholder="Cerca una pizza..." th:field="${searchPizza.nome}" />
+					        </div>
+					        <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+						</div>
+						<div th:if="${#fields.hasErrors('nome')}" class="error-container">
+							<span th:errors="*{nome}" class="error-message"></span>
+						</div>
+					</form>
+				</div>
+				
+				<span>
+					<a href="/" class="header-item">
+									<img src="images/header/pizza.png" alt="Homepage" class="image">
+									<span>HOMEPAGE</span>
+					</a>
+				</span>	
+				<span>
+					<a href="/redirectByRole" class="header-item">
+									<img src="images/header/menu.png" alt="Menu" class="image">
+									<span>MENU</span>
+					</a>
+				</span>	
+				<span>
+					<a href="/carrello" class="header-item">
+									<img src="images/header/carrello.png" alt="Carrello" class="image">
+									<span>CARRELLO</span>
+					</a>
+				</span>		
+				<span>
+					<a href="/orari" class="header-item">
+									<img src="images/header/orologio.png" alt="Orari" class="image">
+									<span>ORARI</span>
+					</a>
+				</span>
+				<span>
+					<a th:href="${authentication != null ? '/user' : '/login'}" class="header-item">
+				    	<img src="images/header/loginIcon.png" alt="Account" class="image">
+						<span class="user-link">
+					        <span>ACCOUNT</span>
+					        <span th:if="${authentication != null}">
+					        	<p id="user"><span th:text="${authentication.principal.username}">No Username</span></p>
+					        </span>
+						</span>
+				   </a>
+				</span>
+			</div>
+		</header>
+		<section>
+			<div class="carrello-container">
+			    <div class="carrello-form">
+			        <div>
+			            <img src="/images/carrello/carrelloImg.png" id="imgCarrello">
+			        </div>
+			        <div class="riepilogo-container">
+			            <!-- Messaggio se il carrello è vuoto -->
+			            <div th:if="${#lists.isEmpty(carrello.items)}">
+			                <p>Il carrello è vuoto.</p>
+			            </div>
+
+			            <!-- Tabella per mostrare i dettagli delle pizze nel carrello -->
+			            <table class="carrello-table">
+			                <!-- Intestazioni delle colonne -->
+			                <thead>
+			                    <tr>
+			                        <th></th> <!-- Colonna per il pulsante di rimozione -->
+			                        <th>Nome</th>
+			                        <th>Quantità</th>
+			                        <th>Prezzo</th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+			                    <!-- Ciclo per mostrare le pizze nel carrello -->
+			                    <tr th:each="pizzaItem : ${carrello.items}">
+			                        <td>
+										<span class="remove-container">
+							                <form th:action="@{/carrello/rimuovi/{pizzaId}(pizzaId=${pizzaItem.pizza.id})}" method="POST">
+							                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+							                    <button type="submit" class="remove-button">
+							                        <i class="fas fa-times"></i>
+							                    </button>
+							                </form>
+							            </span>
+			                        </td>
+			                        <td th:text="${pizzaItem.pizza.nome}">Nome della Pizza</td>
+			                        <td th:text="${pizzaItem.quantity}">1</td>
+			                        <td th:text="${pizzaItem.pizza.prezzo}">0.00</td>
+			                    </tr>
+			                </tbody>
+			            </table>
+
+						<div class="totale-container">
+			                <span class="totale-label">Totale:</span>
+			                <span class="totale-amount" th:text="${carrello.getTotalPrice()}">0.00</span><span id="valuta">€</span>
+			            </div>
+						
+			            <!-- Modulo per confermare l'ordine -->
+			            <form th:action="@{/carrello/confermaOrdine}" method="POST">
+			                <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+			                <button type="submit" id="ordine-button">VAI AL CHECKOUT<i class="fas fa-shopping-bag"></i></button>
+			            </form>
+			        </div>
+			    </div>
+			</div>
+		</section>
+		<footer>
+			<div class="footer-container">
+				<div>p</div>
+			</div>
+		</footer>
+	</body>
+</html>

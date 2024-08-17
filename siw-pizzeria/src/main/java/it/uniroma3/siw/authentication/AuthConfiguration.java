@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -32,6 +33,7 @@ public class AuthConfiguration{
                     .requestMatchers(HttpMethod.GET, "/admin/pizze").hasAuthority("ROLE_ADMIN")
                     .requestMatchers(HttpMethod.GET, "/user/pizze").hasAuthority("ROLE_USER")
                     .anyRequest().authenticated()
+                    
             )
             .formLogin(formLogin ->
             formLogin

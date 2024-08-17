@@ -1,0 +1,108 @@
+.carrello-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.carrello-form{
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(255, 255, 255, 0.9);
+	border: 9px solid rgb(0, 0, 0);
+	border-radius: 7px;
+	padding: 15px;
+}
+
+.carrello-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.carrello-table th, .carrello-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid rgb(128, 128, 128);
+}
+
+.carrello-table th {
+    background-color: rgb(255, 255, 255);
+	font-size: 22px;
+}
+
+.carrello-table td{
+	width: 150px;
+	font-size: 20px;
+}
+
+.remove-container {
+    display: flex;
+	justify-content: center;
+}
+
+.totale-container {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px; /* Spazio tra il totale e il pulsante di conferma */
+}
+
+.totale-container span{
+	margin: 10px;
+}
+
+.totale-label {
+	font-size: 22px;
+    font-weight: bold;
+}
+
+.totale-amount {
+    font-size: 22px;
+	font-weight: bold;
+    color: #333;
+}
+
+#ordine-button{
+	border: none;
+	color:black;
+	cursor: pointer;
+	border-radius: 25px;
+	background-color: rgb(192, 167, 63);
+	font-size: 22px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	padding: 15px;
+}
+
+#ordine-button i{
+	font-size: 25px;
+	margin-left: 80px;
+}
+
+#ordine-button:hover{
+    background-color: grey;
+}
+
+#imgCarrello{
+	width: 60%;
+	height: auto;
+}
+
+#valuta{
+	margin-left: 0px;
+}
+
+.remove-button{
+	font-size: x-large;
+	background-color: red;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.remove-button:hover{
+	background-color: darkred;
+}
+
+.error-message {
+    margin-top: 20px;
+    color: red;
+    font-weight: bold;
+}
