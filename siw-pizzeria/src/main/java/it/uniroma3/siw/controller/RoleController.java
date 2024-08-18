@@ -45,7 +45,6 @@ public class RoleController {
 	
 	@GetMapping("/admin/gestionePizze")
 	public String gestionePizzePage(Model model, Authentication authentication) {
-		model.addAttribute("searchPizza", new Pizza());
 		model.addAttribute("authentication", authentication);
 		model.addAttribute("pizza", new Pizza());
 		model.addAttribute("pizzaRemove", new Pizza());

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+		<link rel="stylesheet" href="/css/stile.css" />
+		<link rel="stylesheet" href="/css/checkout.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<title>
+			Checkout
+		</title>
+	</head>
+	<body>
+		<nav></nav>
+		<header>
+			<div class="header-container">	
+				<img id="siwPizzeria" src="/images/siwPizzeriaD.gif">
+				
+				<div class="search-container">
+					<form class="search-form" th:action="@{/searchPizza}" method="POST" th:object="${searchPizza}">
+						<div class="searchSubmit-container">
+					    	<div class="form-group">
+					        	<input class="search-input" required type="text" placeholder="Cerca una pizza..." th:field="${searchPizza.nome}" />
+					        </div>
+					        <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+						</div>
+						<div th:if="${#fields.hasErrors('nome')}" class="error-container">
+							<span th:errors="*{nome}" class="error-message"></span>
+						</div>
+					</form>
+				</div>
+				
+				<span>
+					<a href="/" class="header-item">
+									<img src="/images/header/pizza.png" alt="Homepage" class="image">
+									<span>HOMEPAGE</span>
+					</a>
+				</span>	
+				<span>
+					<a href="/redirectByRole" class="header-item">
+									<img src="/images/header/menu.png" alt="Menu" class="image">
+									<span>MENU</span>
+					</a>
+				</span>	
+				<span>
+					<a href="/carrello" class="header-item">
+									<img src="/images/header/carrello.png" alt="Carrello" class="image">
+									<span>CARRELLO</span>
+									<span class="cart-count" th:if="${totalPizzaCount > 0}" th:text="${totalPizzaCount}"></span>
+					</a>
+				</span>		
+				<span>
+					<a href="/orari" class="header-item">
+									<img src="/images/header/orologio.png" alt="Orari" class="image">
+									<span>ORARI</span>
+					</a>
+				</span>
+				<span>
+					<a th:href="${authentication != null ? '/user' : '/login'}" class="header-item">
+				    	<img src="/images/header/loginIcon.png" alt="Account" class="image">
+						<span class="user-link">
+					        <span>ACCOUNT</span>
+					        <span th:if="${authentication != null}">
+					        	<p id="user"><span th:text="${authentication.principal.username}">No Username</span></p>
+					        </span>
+						</span>
+				   </a>
+				</span>
+			</div>
+		</header>
+		<section>
+			<div class="main-container">
+				<div class="checkout-container">
+					<div><img src="/images/checkout/checkoutImg.png"></div>
+					<div class="recap-data-container">
+						<div class="data-container">
+							<form action="/submit-ordine" method="POST">
+								<h1>I TUOI DATI</h1>
+								<div><input type="text" name="nome" required class="input" placeholder="Nome..."/></div>
+								<div><input type="text" name="cognome" required class="input" placeholder="Cognome..."/></div>
+								<div><input type="text" name="citta" required class="input" placeholder="Città..."/></div>
+								<div><input type="text" name="indirizzo" required class="input" placeholder="Indirizzo..."/></div>
+								<div><input type="text" name="cap" required class="input" placeholder="CAP..."/></div>
+								
+						        
+								<div class="form-group">
+						            <label for="date" class="input-label">Data:</label>
+						            <select id="date" name="date"></select>
+						        </div>
+								
+								<div class="form-group">
+						           <label for="time" class="input-label">Ora:</label>
+						           <select id="time" name="time">
+						           </select>
+						       </div>
+							   <script>
+					           function populateDates(startDate, endDate) {
+					               const dateSelect = document.getElementById('date');
+					               const start = new Date(startDate);
+					               const end = new Date(endDate);
+
+					               while (start <= end) {
+					                   const option = document.createElement('option');
+					                   const dateString = start.toISOString().split('T')[0];
+					                   const displayDate = start.toLocaleDateString();
+					                   option.value = dateString;
+					                   option.text = displayDate;
+					                   dateSelect.appendChild(option);
+					                   start.setDate(start.getDate() + 1);
+					               }
+					           }
+
+					           function populateTimes(startHour, endHour, interval) {
+					               const timeSelect = document.getElementById('time');
+					               const [startH, startM] = startHour.split(':').map(Number);
+					               const [endH, endM] = endHour.split(':').map(Number);
+
+					               for (let h = startH; h <= endH; h++) {
+									for (let m = (h === startH ? startM : 0); m < (h === endH ? endM + interval : 60); m += interval) {
+						               const timeString = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+						               const option = document.createElement('option');
+						               option.value = timeString;
+						               option.text = timeString;
+						               timeSelect.appendChild(option);
+					                   }
+					               }
+					           }
+
+					           document.addEventListener('DOMContentLoaded', function () {
+					               populateDates('2024-08-18', '2024-09-30'); // Intervallo di date
+					               populateTimes('12:30', '22:00', 30); // Intervallo di ore con intervallo di 30 minuti
+					           });
+					       </script>
+								
+								<div><button type="submit" class="submit-button">Conferma<i class="fas fa-check"></i></button></div>
+									
+							</form>
+							
+						</div>
+						<div class="recap-container">
+							<h1>RIEPILOGO ORDINE</h1>
+							<table>
+					           <thead>
+					               <tr>
+					                   <th>Pizza</th>
+					                   <th>Totale per Pizza</th>
+					               </tr>
+					           </thead>
+					           <tbody>
+					               <!-- Ciclo per mostrare le pizze nel carrello -->
+					               <tr th:each="pizzaItem : ${carrello.items}">
+					                   <td>
+					                       <div class="pizza-details">
+					                           <span th:text="${pizzaItem.pizza.nome}">Nome Pizza</span>
+					                           <span class="pizza-quantity" th:text="'x ' + ${pizzaItem.quantity}">x 1</span>
+					                       </div>
+					                   </td>
+					                   <td class="total-cell" th:text="${pizzaItem.pizza.prezzo * pizzaItem.quantity}">0.00</td>
+					               </tr>
+					           </tbody>
+					           <tfoot>
+					               <tr class="spese-trasporto">
+					                   <td>Spese di Spedizione</td>
+					                   <td class="total-cell">5.00</td>
+					               </tr>
+					               <tr class="total-row">
+					                   <td>Totale Ordine</td>
+					                   <td class="total-cell" th:text="${carrello.getTotalPrice()} + 5">0.00</td>
+					               </tr>
+					           </tfoot>
+					       </table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer>
+			<div class="footer-container">
+				<div>p</div>
+			</div>
+		</footer>
+	</body>
+</html>

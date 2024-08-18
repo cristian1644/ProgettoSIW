@@ -8,6 +8,20 @@ body {
   min-height: 100vh;
 }
 
+.cart-count{
+	position: absolute;
+    top: -0.1px;
+    left: -0.1px;
+	transform: translate(2%, 2%);
+    background-color: red;
+    color: white;
+    font-size: 18px;
+    padding: 4px 9px;
+    border-radius: 50%;
+    font-weight: bold;
+    z-index: 10;
+}
+
 /* ----------------------------------------------STILE BARRA RICERCA---------------------------------------------------------------------*/
 .search-container {
     display: flex; 
@@ -103,6 +117,7 @@ body {
     color: white;
     font-weight: bold;
 	margin: 25px;
+	position: relative;
 }
 
 .user-link{

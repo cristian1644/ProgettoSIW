@@ -1,0 +1,156 @@
+.main-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.checkout-container{
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(255, 255, 255, 0.9);
+	border: 9px solid rgb(0, 0, 0);
+	border-radius: 7px;
+	padding: 15px;	
+}
+
+.recap-data-container{
+	display: flex;
+	justify-content: space-around;
+	width: 1000px;
+}
+
+.data-container, .recap-container{
+	display:flex;
+	flex-direction: column;
+	background-color: rgb(255, 255, 255, 0.9);
+	border: 3px solid rgb(0, 0, 0);
+	border-radius: 7px;
+	padding: 15px;
+}
+
+.data-container h1, .recap-container h1{
+	font-size: 45px;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+form{
+	display: flex;
+	flex-direction: column;    
+	justify-content: center;
+}
+
+.input {   
+    border: none;
+    outline: none;
+    width: 320px; /* Width of the input field */
+    font-size: 16px;
+	border-bottom: 3px solid darkgray; /* Aggiungi una linea sottile sotto il campo di input */
+	background-color: transparent; /* Rimuove il colore di sfondo per mostrare solo la sottolineatura */
+}
+
+
+.submit-button {
+    background-color:white;
+    border: none;
+    color:black;
+    cursor: pointer;
+    display: flex;
+	align-items: center;
+	border-radius: 25px;
+	background-color: rgb(192, 167, 63);
+	font-size: 22px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	padding: 10px;
+}
+
+.submit-button i {
+    font-size: 22px;
+	margin-left: 70px;
+}
+
+.submit-button:hover {
+    background-color: grey;
+}
+
+.input-label {
+   display: block;
+   font-weight: bold;
+   margin-bottom: 5px;
+   color: #333;
+   font-size: 18px;
+}
+
+select {
+   width: 100%;
+   padding: 10px;
+   border-radius: 4px;
+   border: 1px solid #ddd;
+   font-size: 18px;
+   box-sizing: border-box;
+   background: #fff;
+}
+
+.form-group select:focus {
+   border-color: #007BFF;
+   outline: none;
+}
+
+/* Personalizzazione della freccia del selettore */
+.custom-select {
+   position: relative;
+   display: inline-block;
+   width: 100%;
+}
+
+.custom-select::after {
+   content: '▼';
+   position: absolute;
+   right: 10px;
+   top: 50%;
+   transform: translateY(-50%);
+   pointer-events: none;
+   color: #007BFF;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+	font-size: 22px;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+.total-row {
+    font-weight: bold;
+}
+
+.total-cell {
+    text-align: center;
+}
+
+.spese-trasporto {
+    font-weight: bold;
+}
+
+.pizza-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pizza-quantity {
+    margin-left: 10px;
+    font-weight: bold;
+}
+

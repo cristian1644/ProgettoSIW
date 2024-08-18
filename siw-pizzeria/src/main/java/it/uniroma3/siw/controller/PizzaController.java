@@ -108,7 +108,6 @@ public class PizzaController {
 
 	 @GetMapping("/")
 	    public String index(Model model, Authentication authentication) {
-	        model.addAttribute("searchPizza", new Pizza());
 	        model.addAttribute("authentication", authentication);
 	        return "index"; 
 	    }

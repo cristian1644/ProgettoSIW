@@ -73,4 +73,37 @@ public class CarrelloController {
 	    return "redirect:/carrello";
 
     }
+	
+	@PostMapping("/carrello/checkout")
+    public String showCheckoutPage(Model model, HttpSession session) {
+        // Recupera il carrello dalla sessione
+        Carrello carrello = (Carrello) session.getAttribute("carrello");
+        
+        if (carrello.getItems().size() == 0) {
+            return "redirect:/carrello"; // Reindirizza al carrello se non ci sono articoli
+        }
+
+        // Aggiungi il carrello al modello
+        model.addAttribute("carrello", carrello);
+
+        return "checkout";
+    }
+	
+	@PostMapping("/carrello/confermaOrdine")
+    public String processCheckout(HttpSession session) {
+		 // Recupera il carrello dalla sessione
+        Carrello carrello = (Carrello) session.getAttribute("carrello");
+        
+        if (carrello == null || carrello.getItems().isEmpty()) {
+            return "redirect:/carrello"; // Reindirizza se non ci sono articoli nel carrello
+        }
+
+        // Logica per processare l'ordine
+        // Esempio: salvare l'ordine nel database, inviare email di conferma, ecc.
+
+        // Dopo che l'ordine è confermato, puoi svuotare il carrello
+        session.removeAttribute("carrello");
+
+        return "redirect:/conferma"; // Reindirizza alla pagina di conferma dell'ordine
+    }
 }

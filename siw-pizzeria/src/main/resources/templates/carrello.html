@@ -44,6 +44,7 @@
 					<a href="/carrello" class="header-item">
 									<img src="images/header/carrello.png" alt="Carrello" class="image">
 									<span>CARRELLO</span>
+									<span class="cart-count" th:if="${totalPizzaCount > 0}" th:text="${totalPizzaCount}"></span>
 					</a>
 				</span>		
 				<span>
@@ -114,9 +115,9 @@
 			            </div>
 						
 			            <!-- Modulo per confermare l'ordine -->
-			            <form th:action="@{/carrello/confermaOrdine}" method="POST">
+			            <form th:action="@{/carrello/checkout}" method="POST">
 			                <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-			                <button type="submit" id="ordine-button">VAI AL CHECKOUT<i class="fas fa-shopping-bag"></i></button>
+			                <button type="submit" id="ordine-button">PROCEDI CON L'ORDINE<i class="fas fa-shopping-bag"></i></button>
 			            </form>
 			        </div>
 			    </div>

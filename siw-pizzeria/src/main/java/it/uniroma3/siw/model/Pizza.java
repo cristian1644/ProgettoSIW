@@ -1,6 +1,5 @@
 package it.uniroma3.siw.model;
 
-import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -8,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 
 
@@ -24,9 +22,6 @@ public class Pizza {
 	private String pathImage;
 
 	private float prezzo;
-	
-	@OneToMany(mappedBy="pizza")
-	private List<IngredienteInPizza> ingredientiInPizza;
 
 	@Column(length=300)
 	private String descrizione;
@@ -56,12 +51,7 @@ public class Pizza {
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
-	public List<IngredienteInPizza> getIngredientiInPizza() {
-		return ingredientiInPizza;
-	}
-	public void setIngredienti(List<IngredienteInPizza> ingredientiInPizza) {
-		this.ingredientiInPizza = ingredientiInPizza;
-	}
+
 	public String getDescrizione() {
 		return descrizione;
 	}

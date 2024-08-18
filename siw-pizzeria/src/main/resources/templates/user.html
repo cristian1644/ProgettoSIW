@@ -46,6 +46,7 @@
 					<a href="/carrello" class="header-item">
 						<img src="/images/header/carrello.png" alt="Carrello" class="image">
 						<span>CARRELLO</span>
+						<span class="cart-count" th:if="${totalPizzaCount > 0}" th:text="${totalPizzaCount}"></span>
 					</a>
 				</span>		
 				<span>
