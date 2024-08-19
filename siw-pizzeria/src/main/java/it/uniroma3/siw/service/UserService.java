@@ -29,4 +29,9 @@ public class UserService {
 		user.setCognome(cognome);
 		return user;
 	}
+	
+	public Utente findById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+	
 }

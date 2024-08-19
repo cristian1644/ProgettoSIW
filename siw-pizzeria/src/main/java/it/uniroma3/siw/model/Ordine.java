@@ -1,6 +1,7 @@
 package it.uniroma3.siw.model;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -9,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -31,6 +34,10 @@ public class Ordine {
     private LocalDateTime dataOraConsegna;
 
     private double totale;
+    
+    @ManyToOne
+    @JoinColumn(name = "utente_id")
+    private Utente utente;
 
     @OneToMany(mappedBy = "ordine", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RigaOrdine> rigaOrdine;
@@ -100,12 +107,20 @@ public class Ordine {
 		this.totale = totale;
 	}
 
-	public Set<RigaOrdine> getDettagliOrdine() {
+	public Set<RigaOrdine> getRigheOrdine() {
 		return rigaOrdine;
 	}
 
-	public void setDettagliOrdine(Set<RigaOrdine> rigaOrdine) {
+	public void setRigheOrdine(Set<RigaOrdine> rigaOrdine) {
 		this.rigaOrdine = rigaOrdine;
+	}
+	
+	public Utente getUtente() {
+		return utente;
+	}
+
+	public void setUtente(Utente utente) {
+		this.utente = utente;
 	}
 
 	//equals e hascode

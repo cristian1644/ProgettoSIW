@@ -74,7 +74,7 @@
 					<div><img src="/images/checkout/checkoutImg.png"></div>
 					<div class="recap-data-container">
 						<div class="data-container">
-							<form action="/submit-ordine" method="POST">
+							<form th:action="@{/submit-ordine}" method="POST">
 								<h1>I TUOI DATI</h1>
 								<div><input type="text" name="nome" required class="input" placeholder="Nome..."/></div>
 								<div><input type="text" name="cognome" required class="input" placeholder="Cognome..."/></div>

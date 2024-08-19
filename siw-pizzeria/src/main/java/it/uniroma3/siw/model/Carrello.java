@@ -40,6 +40,10 @@ private List<CartItem> items = new ArrayList<>();
         }
     }
 
+    public void svuota() {
+        this.items.clear();
+    }
+    
     public double getTotalPrice() {
         return items.stream().mapToDouble(item -> item.getPizza().getPrezzo() * item.getQuantity()).sum();
     }

@@ -28,6 +28,13 @@ public class RigaOrdine {
 
     private double totale;
 
+    public RigaOrdine(String nomePizza, int quantita, double prezzoUnitario){
+    	this.nomePizza = nomePizza;
+    	this.quantita = quantita;
+    	this.prezzoUnitario = prezzoUnitario;
+    	this.totale = quantita * prezzoUnitario;
+    }
+    
     //getter e setter
 	public Long getId() {
 		return id;
@@ -77,10 +84,9 @@ public class RigaOrdine {
 		this.totale = totale;
 	}
 
-	//equals e hascode
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(id, nomePizza);
 	}
 
 	@Override
@@ -92,8 +98,10 @@ public class RigaOrdine {
 		if (getClass() != obj.getClass())
 			return false;
 		RigaOrdine other = (RigaOrdine) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(id, other.id) && Objects.equals(nomePizza, other.nomePizza);
 	}
+
+	
     
 	
     
