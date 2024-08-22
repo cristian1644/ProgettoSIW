@@ -1,0 +1,14 @@
+.main-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.orari-container{
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(255, 255, 255, 0.9);
+	border: 9px solid rgb(0, 0, 0);
+	border-radius: 7px;
+	padding: 15px;	
+}

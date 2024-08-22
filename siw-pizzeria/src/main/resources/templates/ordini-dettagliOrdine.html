@@ -32,13 +32,13 @@
 				
 				<span>
 					<a href="/" class="header-item">
-									<img src="images/header/pizza.png" alt="Homepage" class="image">
+									<img src="/images/header/pizza.png" alt="Homepage" class="image">
 									<span>HOMEPAGE</span>
 					</a>
 				</span>	
 				<span>
 					<a href="/redirectByRole" class="header-item">
-									<img src="images/header/menu.png" alt="Menu" class="image">
+									<img src="/images/header/menu.png" alt="Menu" class="image">
 									<span>MENU</span>
 					</a>
 				</span>	
@@ -51,13 +51,13 @@
 				</span>		
 				<span>
 					<a href="/orari" class="header-item">
-									<img src="images/header/orologio.png" alt="Orari" class="image">
+									<img src="/images/header/orologio.png" alt="Orari" class="image">
 									<span>ORARI</span>
 					</a>
 				</span>
 				<span>
 					<a th:href="${authentication != null ? '/user' : '/login'}" class="header-item">
-				    	<img src="images/header/loginIcon.png" alt="Account" class="image">
+				    	<img src="/images/header/loginIcon.png" alt="Account" class="image">
 						<span class="user-link">
 					        <span>ACCOUNT</span>
 					        <span th:if="${authentication != null}">
@@ -99,6 +99,30 @@
 					        </tbody>
 					    </table>
 						
+						<table>
+					        <thead>
+					            <tr>
+					                <th>Prodotto</th>
+					                <th>Quantità</th>
+					                <th>Prezzo Unitario</th>
+					                <th>Totale</th>
+					            </tr>
+					        </thead>
+					        <tbody>
+					            <tr th:each="riga : ${dettaglioOrdine.righeOrdine}">
+					                <td th:text="${riga.nomePizza}"></td>
+					                <td th:text="${riga.quantita}"></td>
+					                <td th:text="${riga.prezzoUnitario}"></td>
+					                <td class="total-cell" th:text="${riga.prezzoUnitario * riga.quantita}">0.00</td>
+					            </tr>
+					        </tbody>
+					        <tfoot>
+					            <tr>
+					                <td colspan="3"><strong>Totale Ordine (con consegna):</strong></td>
+					                <td th:text="${dettaglioOrdine.totale}"></td>
+					            </tr>
+					        </tfoot>
+					    </table>
 						
 						<div>
 							<a href="/user">

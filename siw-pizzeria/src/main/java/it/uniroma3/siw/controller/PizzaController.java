@@ -107,8 +107,7 @@ public class PizzaController {
 	}
 
 	 @GetMapping("/")
-	    public String index(Model model, Authentication authentication) {
-	        model.addAttribute("authentication", authentication);
+	    public String index() {    
 	        return "index"; 
 	    }
 	
@@ -128,15 +127,13 @@ public class PizzaController {
 
 
 	@GetMapping("/pizza/{id}")
-	public String getPizza(@PathVariable("id") Long id,Model model,Authentication authentication) {
-		model.addAttribute("authentication", authentication);
+	public String getPizza(@PathVariable("id") Long id,Model model) {
 		model.addAttribute("pizza",this.pizzaService.findById(id));
 		return "pizza.html";
 	}
 
 	@GetMapping("/pizze")
-	public String showPizze(Model model, Authentication authentication) {
-		model.addAttribute("authentication", authentication);
+	public String showPizze(Model model) {
 		model.addAttribute("pizze",this.pizzaService.findAll());
 		model.addAttribute("pizza", new Pizza());
 		return "pizze.html";
@@ -171,4 +168,9 @@ public class PizzaController {
         model.addAttribute("pizza", new Pizza());
         return "admin-gestionePizze";
     }
+	
+	@GetMapping("/orari")
+	public String orariPage() {
+		return "orari";
+	}
 }

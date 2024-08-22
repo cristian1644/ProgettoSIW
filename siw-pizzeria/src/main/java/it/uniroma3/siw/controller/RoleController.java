@@ -36,18 +36,21 @@ public class RoleController {
     }
 	
 	@GetMapping("/admin/pizze")
-    public String adminPizzePage(Model model, Authentication authentication) {
+    public String adminPizzePage(Model model) {
 		model.addAttribute("pizza", new Pizza());
 		model.addAttribute("pizze",this.pizzaService.findAll());
-		model.addAttribute("authentication", authentication);
         return "admin-pizze"; // Restituisce il file admin-pizze.html
     }
 	
 	@GetMapping("/admin/gestionePizze")
-	public String gestionePizzePage(Model model, Authentication authentication) {
-		model.addAttribute("authentication", authentication);
+	public String gestionePizzePage(Model model) {
 		model.addAttribute("pizza", new Pizza());
 		model.addAttribute("pizzaRemove", new Pizza());
 		return "admin-gestionePizze";
+	}
+	
+	@GetMapping("/access-denied")
+	public String accessDeniedPage() {
+		return "access-denied";
 	}
 }

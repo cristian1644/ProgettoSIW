@@ -3,6 +3,7 @@ package it.uniroma3.siw.controller;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -92,5 +94,29 @@ public class OrdineController {
         model.addAttribute("authentication", authentication);
         model.addAttribute("ordini", orders);
         return "ordini"; 
+    }
+    
+    @GetMapping("/ordini/dettagli-ordine/{id}")
+    public String dettagliOrdine(@PathVariable Long id, Model model, Authentication authentication,Principal principal) {
+    	
+    	// Recupera il nome utente dal Principal
+        String username = principal.getName();
+        
+        // Usa il nome utente per recuperare l'ID utente
+        Credentials currentCredentials = credentialsService.findByUsername(username);
+        Long utenteId = currentCredentials.getUser().getId();
+    	
+        List<Ordine> orders = ordineService.getOrdiniByUtente(utenteId);
+    	
+    	 Optional<Ordine> optionalOrdine = ordineService.getOrdineById(id);
+         if (optionalOrdine.isPresent()) {
+             Ordine ordine = optionalOrdine.get();
+             model.addAttribute("dettaglioOrdine", ordine);
+         } else {
+             model.addAttribute("dettaglioOrdine", null);
+         }
+         model.addAttribute("ordini", orders);
+         model.addAttribute("authentication", authentication);
+         return "ordini-dettagliOrdine";
     }
 }

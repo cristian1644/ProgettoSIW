@@ -35,6 +35,9 @@ public class RigaOrdine {
     	this.totale = quantita * prezzoUnitario;
     }
     
+    public RigaOrdine() {
+    }
+    
     //getter e setter
 	public Long getId() {
 		return id;

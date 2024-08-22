@@ -168,7 +168,6 @@ div {
 
 a {
   display: block; /* Mostra i link come blocchi */
-  margin-bottom: 10px; /* Spazio tra i link */
   text-decoration: none; /* Rimuovi la sottolineatura */
 }
 /* ----------------------------------------------STILE SWIPER--------------------------------------------------------------------------*/

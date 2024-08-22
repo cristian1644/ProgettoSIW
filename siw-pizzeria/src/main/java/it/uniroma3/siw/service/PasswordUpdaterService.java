@@ -1,5 +1,9 @@
 package it.uniroma3.siw.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,13 +23,16 @@ public class PasswordUpdaterService {
 
     @Transactional
     public void updatePasswords() {
-        Iterable<Credentials> users = credentialsRepository.findAll();
-        for (Credentials user : users) {
-            // Codifica la password esistente
-            String encodedPassword = passwordEncoder.encode(user.getPassword());
-            // Salva la password codificata
-            user.setPassword(encodedPassword);
-            credentialsRepository.save(user);
+    	Iterable<Credentials> iterable = credentialsRepository.findAll();
+    	List<Credentials> credentials = StreamSupport.stream(iterable.spliterator(), false)
+    	                                              .collect(Collectors.toList());
+
+        for (Credentials cred : credentials) {
+            if (!cred.getPassword().startsWith("$2a$")) { // Verifica se la password è già criptata
+                String encodedPassword = passwordEncoder.encode(cred.getPassword());
+                cred.setPassword(encodedPassword);
+                credentialsRepository.save(cred); // Salva la password criptata
+            }
         }
     }
 }

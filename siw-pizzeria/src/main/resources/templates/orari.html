@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-		<link rel="stylesheet" href="/css/stile.css" />
-		<link rel="stylesheet" href="/css/ordini.css" />
-		<title>
-			I tuoi ordini
-		</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link rel="stylesheet" href="/css/orari.css" />
+	<title>
+		Orari
+	</title>
 </head>
 <body>
 	<nav></nav>
@@ -68,50 +67,19 @@
 				</span>
 			</div>
 		</header>
-			<section>
-				<div class="main-container">
-					<div class="orders-container">
-						<span><img src="/images/ordini/yourOrdersImg.png" id="orders-img"></span>
-						
-						<div th:if="${#lists.isEmpty(ordini)}">
-						       <p>Nessun ordine effettuato</p>
-						   </div>
-						
-						<table>
-					        <thead>
-					            <tr>
-					                <th>ID Ordine</th>
-					                <th>Totale</th>
-					                <th>Dettagli</th>
-					            </tr>
-					        </thead>
-					        <tbody>
-					            <tr th:each="ordine : ${ordini}">
-					                <td th:text="${ordine.id}"></td>
-					                <td th:text="${ordine.totale}"></td>
-					                <td>
-					                    <a th:href="@{/ordini/dettagli-ordine/{id}(id=${ordine.id})}">
-										    	<button type="submit" class="btn-details">VISUALIZZA<i class="fas fa-receipt"></i></button>   
-										</a>
-										
-					                </td>
-					            </tr>
-					        </tbody>
-					    </table>
-						
-						
-						<div>
-							<a href="/user">
-							    	<button type="submit" class="btn-details">RITORNA AL PROFILO<i class="fas fa-arrow-left"></i></button>   
-							</a>
-						</div>
-					</div>
+		
+		<section>
+			<div class="main-container">
+				<div class="orari-container">
+					<span><img src="/images/orari/orariImg.png" id="your-profile-img"></span>
 				</div>
-			</section>
-	<footer>
-	<div class="footer-container">
-		<div>p</div>
-	</div>
-	</footer>
+			</div>
+		</section>
+		
+		<footer>
+			<div class="footer-container">
+				<div>p</div>
+			</div>
+		</footer>
 </body>
 </html>

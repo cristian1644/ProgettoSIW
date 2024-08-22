@@ -6,8 +6,67 @@
 .orders-container{
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	background-color: rgb(255, 255, 255, 0.9);
 	border: 9px solid rgb(0, 0, 0);
 	border-radius: 7px;
 	padding: 15px;
+}
+
+table {
+    width: 900px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 20px 0;
+    font-size: 20px;
+    text-align: center;
+	align-items: center;
+    border: 1px solid rgb(0, 0, 0); /* Bordi esterni della tabella */
+}
+
+thead tr {
+    background-color: rgb(255, 255, 255);
+}
+
+th {
+    border-bottom: 1px solid rgb(0, 0, 0); /* Bordi tra le intestazioni e il corpo della tabella */
+}
+
+th, td {
+    padding: 12px 15px;
+    border-left: 1px solid rgb(0, 0, 0); /* Bordi verticali */
+    border-right: 1px solid rgb(0, 0, 0); /* Bordi verticali */		
+}
+
+
+th:first-child, td:first-child {
+    border-left: none; /* Rimuovi il bordo sinistro della prima colonna */
+}
+
+th:last-child, td:last-child {
+    border-right: none; /* Rimuovi il bordo destro dell'ultima colonna */
+}
+
+tbody tr {
+    border-bottom: 1px solid rgb(0, 0, 0); /* Bordi tra le righe */
+}
+
+.btn-details{
+	display: inline-block;
+    border: none;
+    color:black;
+    cursor: pointer;
+    border-radius: 25px;
+	background-color: rgb(192, 167, 63);
+	font-size: 18px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	padding: 10px;
+}
+
+.btn-details i{
+	margin-left: 50px;
+}
+
+td a {
+    display: inline-block;
 }

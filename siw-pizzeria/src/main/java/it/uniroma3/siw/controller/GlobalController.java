@@ -26,7 +26,7 @@ public class GlobalController {
 	  }
 	
 	@ModelAttribute
-    public void addGlobalAttributes(Model model, HttpSession session) {
+    public void addGlobalAttributes(Model model, HttpSession session, Authentication authentication) {
         // Recupera il carrello dalla sessione
         Carrello carrello = (Carrello) session.getAttribute("carrello");
 
@@ -37,5 +37,6 @@ public class GlobalController {
         
         model.addAttribute("searchPizza", new Pizza());
         model.addAttribute("totalPizzaCount", totalPizzaCount);
+        model.addAttribute("authentication", authentication);
     }
 }

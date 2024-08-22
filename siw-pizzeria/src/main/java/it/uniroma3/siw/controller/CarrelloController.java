@@ -48,8 +48,7 @@ public class CarrelloController {
             session.setAttribute("carrello", carrello);
         }
         
-        model.addAttribute("carrello", carrello);
-        model.addAttribute("searchPizza", new Pizza());
+        model.addAttribute("carrello", carrello); 
         model.addAttribute("authentication", authentication);
         
         return "carrello"; // Nome della tua pagina HTML

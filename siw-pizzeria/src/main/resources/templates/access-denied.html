@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+			<link rel="stylesheet" href="/css/stile.css" />
+			<link rel="stylesheet" href="/css/access-denied.css" />
+			<title>
+				Autorizzazione negata
+			</title>
+	</head>
+	<body>
+		<header>
+			<div class="header-container">	
+						<img id="siwPizzeria" src="/images/siwPizzeriaD.gif">
+						
+						<div class="search-container">
+							<form class="search-form" th:action="@{/searchPizza}" method="POST" th:object="${searchPizza}">
+								<div class="searchSubmit-container">
+							    	<div class="form-group">
+							        	<input class="search-input" required type="text" placeholder="Cerca una pizza..." th:field="${searchPizza.nome}" />
+							        </div>
+							        <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+								</div>
+								<div th:if="${#fields.hasErrors('nome')}" class="error-container">
+									<span th:errors="*{nome}" class="error-message"></span>
+								</div>
+							</form>
+						</div>
+						
+						<span>
+							<a href="/" class="header-item">
+											<img src="/images/header/pizza.png" alt="Homepage" class="image">
+											<span>HOMEPAGE</span>
+							</a>
+						</span>	
+						<span>
+							<a href="/pizze" class="header-item">
+											<img src="/images/header/menu.png" alt="Menu" class="image">
+											<span>MENU</span>
+							</a>
+						</span>	
+						<span>
+							<a href="/carrello" class="header-item">
+											<img src="/images/header/carrello.png" alt="Carrello" class="image">
+											<span>CARRELLO</span>
+							</a>
+						</span>		
+						<span>
+							<a href="/orari" class="header-item">
+											<img src="/images/header/orologio.png" alt="Orari" class="image">
+											<span>ORARI</span>
+							</a>
+						</span>
+						<span>
+							<a href="/login" class="header-item">
+							                <img src="/images/header/loginIcon.png" alt="Account" class="image">
+											<span class="user-link">
+										        <span>ACCOUNT</span>
+										        <span th:if="${authentication != null}">
+										        	<p id="user"><span th:text="${authentication.principal.username}">No Username</span></p>
+										        </span>
+											</span>
+							            </a>
+						</span>
+					</div>
+		</header>
+		<section>
+			<div class="main-container">
+				<div class="denied-container">
+					<div><img src="/images/access-denied/deniedAccess.png"></div>
+				</div>
+			</div>
+		</section>
+		<footer>
+			<div class="footer-container">
+				<div>p</div>
+			</div>
+		</footer>
+	</body>
+</html>

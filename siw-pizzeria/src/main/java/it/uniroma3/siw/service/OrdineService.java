@@ -1,6 +1,7 @@
 package it.uniroma3.siw.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +29,8 @@ public class OrdineService {
 	 public List<Ordine> getOrdiniByUtente(Long utenteId) {
         return ordineRepository.findByUtenteId(utenteId);
     }
+	 
+	 public Optional<Ordine> getOrdineById(Long id) {
+		 return this.ordineRepository.findById(id);
+	 }
 }
