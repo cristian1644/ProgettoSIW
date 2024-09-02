@@ -73,10 +73,6 @@
 					<div class="orders-container">
 						<span><img src="/images/ordini/yourOrdersImg.png" id="orders-img"></span>
 						
-						<div th:if="${#lists.isEmpty(ordini)}">
-						       <p>Nessun ordine effettuato</p>
-						   </div>
-						
 						<table>
 					        <thead>
 					            <tr>
@@ -86,6 +82,9 @@
 					            </tr>
 					        </thead>
 					        <tbody>
+								<tr th:if="${#lists.isEmpty(ordini)}">
+					                <td colspan="5">Non hai ancora effettuato ordini</td>
+					            </tr>
 					            <tr th:each="ordine : ${ordini}">
 					                <td th:text="${ordine.id}"></td>
 					                <td th:text="${ordine.totale}"></td>

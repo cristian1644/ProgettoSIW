@@ -12,3 +12,31 @@
 	border-radius: 7px;
 	padding: 15px;	
 }
+
+.orari-table {
+   border-collapse: collapse;
+   margin: 15px;
+   font-size: 20px;
+}
+
+.orari-table th, .orari-table td {
+   border: 1px solid #dddddd;
+   text-align: center;
+   padding: 8px;
+}
+
+.orari-table thead tr {
+    background-color: #ffffff; /* Sfondo bianco per la riga dell'intestazione */
+}
+
+.orari-table thead th {
+    background-color: #ffffff !important; /* Assicura che i <th> siano bianchi */
+}
+
+.orari-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Colore alternato per le righe pari */
+}
+
+.orari-table tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* Colore alternato per le righe dispari */
+}

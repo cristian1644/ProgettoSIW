@@ -2,6 +2,7 @@ package it.uniroma3.siw.controller;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -42,9 +43,12 @@ public class OrdineController {
 		
 		if(carrello != null) {
 		
-		String dataOraConsegnaString = date + "T" + time;
-        LocalDateTime dataOraConsegna = LocalDateTime.parse(dataOraConsegnaString);
-        ordine.setDataOraConsegna(dataOraConsegna);
+		 String dataOraConsegnaString = date + "T" + time;
+		 DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+		 LocalDateTime dataOraConsegna = LocalDateTime.parse(dataOraConsegnaString, inputFormatter);
+		 DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+	     String dataOraConsegnaFormatted = dataOraConsegna.format(outputFormatter);
+		 ordine.setDataOraConsegna(dataOraConsegnaFormatted);
 		
 	    // Crea un set di righe ordine a partire dal carrello
 	    Set<RigaOrdine> righeOrdine = carrello.getItems().stream()

@@ -100,6 +100,7 @@
 					    </table>
 						
 						<table>
+							<h1 id="order-details-title">Dettagli ordine #<span th:text="${dettaglioOrdine.id}"></span></h1>
 					        <thead>
 					            <tr>
 					                <th>Prodotto</th>
@@ -122,6 +123,25 @@
 					                <td th:text="${dettaglioOrdine.totale}"></td>
 					            </tr>
 					        </tfoot>
+					    </table>
+						
+						<table>
+					        <thead>
+					            <tr>
+					                <th>Nome</th>
+					                <th>Cognome</th>
+					                <th>Indirizzo</th>
+					                <th>Data e orario</th>
+					            </tr>
+					        </thead>
+					        <tbody>
+					            <tr>
+					                <td th:text="${dettaglioOrdine.nome}"></td>
+					                <td th:text="${dettaglioOrdine.cognome}"></td>
+					                <td th:text="${dettaglioOrdine.indirizzo}"></td>
+					                <td th:text="${dettaglioOrdine.dataOraConsegna}"></td>
+					            </tr>
+					        </tbody>
 					    </table>
 						
 						<div>

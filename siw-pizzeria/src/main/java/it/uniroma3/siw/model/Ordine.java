@@ -1,7 +1,5 @@
 package it.uniroma3.siw.model;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -31,7 +29,7 @@ public class Ordine {
 	
 	private String cap;
 	 
-    private LocalDateTime dataOraConsegna;
+    private String dataOraConsegna;
 
     private double totale;
     
@@ -91,11 +89,11 @@ public class Ordine {
 		this.cap = cap;
 	}
 
-	public LocalDateTime getDataOraConsegna() {
+	public String getDataOraConsegna() {
 		return dataOraConsegna;
 	}
 
-	public void setDataOraConsegna(LocalDateTime dataOraConsegna) {
+	public void setDataOraConsegna(String dataOraConsegna) {
 		this.dataOraConsegna = dataOraConsegna;
 	}
 

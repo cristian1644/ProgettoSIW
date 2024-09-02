@@ -127,7 +127,9 @@
 					           }
 
 					           document.addEventListener('DOMContentLoaded', function () {
-					               populateDates('2024-08-18', '2024-09-30'); // Intervallo di date
+									const today = new Date().toISOString().split('T')[0];
+									const oneMonthLater = new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString().split('T')[0];
+					               populateDates(today, oneMonthLater); // Intervallo di date
 					               populateTimes('12:30', '22:00', 30); // Intervallo di ore con intervallo di 30 minuti
 					           });
 					       </script>
