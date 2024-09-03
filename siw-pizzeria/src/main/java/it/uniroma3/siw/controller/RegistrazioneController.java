@@ -88,4 +88,10 @@ public class RegistrazioneController {
 	    return "redirect:/";
 	}
 	
+	@GetMapping("/login")
+    public String loginPage(Model model) {
+		model.addAttribute("credentials", new Credentials());
+        return "login";
+    }
+	
 }

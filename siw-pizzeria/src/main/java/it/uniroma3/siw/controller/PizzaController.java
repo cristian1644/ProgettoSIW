@@ -8,7 +8,6 @@ import java.nio.file.StandardOpenOption;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,13 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Pizza;
-import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.repository.PizzaRepository;
-import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.PizzaService;
-import it.uniroma3.siw.service.UserService;
 import it.uniroma3.siw.validator.NewPizzaValidator;
 import it.uniroma3.siw.validator.RimuoviPizzaValidator;
 import it.uniroma3.siw.validator.SearchPizzaValidator;
@@ -48,12 +43,6 @@ public class PizzaController {
 		model.addAttribute("pizza", new Pizza());
 		return "formNewPizza.html";
 	}
-
-	@GetMapping("/login")
-    public String loginPage(Model model) {
-		model.addAttribute("credentials", new Credentials());
-        return "login";
-    }
 	
 	@PostMapping("/pizze")
 	public String newPizza(@Valid @ModelAttribute("pizza") Pizza pizza,BindingResult bindingResult,

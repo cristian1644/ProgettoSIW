@@ -53,14 +53,15 @@
 						</span>
 						<span>
 							<a href="/login" class="header-item">
-							                <img src="/images/header/loginIcon.png" alt="Account" class="image">
-											<span class="user-link">
-										        <span>ACCOUNT</span>
-										        <span th:if="${authentication != null}">
-										        	<p id="user"><span th:text="${authentication.principal.username}">No Username</span></p>
-										        </span>
-											</span>
-							            </a>
+								<a th:href="${authentication != null ? '/user' : '/login'}" class="header-item">
+					                <img src="/images/header/loginIcon.png" alt="Account" class="image">
+									<span class="user-link">
+								        <span>ACCOUNT</span>
+								        <span th:if="${authentication != null}">
+								        	<p id="user"><span th:text="${authentication.principal.username}">No Username</span></p>
+								        </span>
+									</span>
+					            </a>
 						</span>
 					</div>
 		</header>

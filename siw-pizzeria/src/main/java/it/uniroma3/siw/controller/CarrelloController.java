@@ -77,13 +77,12 @@ public class CarrelloController {
     public String showCheckoutPage(Model model, HttpSession session) {
         // Recupera il carrello dalla sessione
         Carrello carrello = (Carrello) session.getAttribute("carrello");
+        model.addAttribute("carrello", carrello);
         
         if (carrello.getItems().size() == 0) {
-            return "redirect:/carrello"; // Reindirizza al carrello se non ci sono articoli
+        	model.addAttribute("error", "Il carrello è vuoto. Aggiungi articoli prima di procedere al checkout.");
+            return "carrello"; // Reindirizza al carrello se non ci sono articoli
         }
-
-        // Aggiungi il carrello al modello
-        model.addAttribute("carrello", carrello);
 
         return "checkout";
     }

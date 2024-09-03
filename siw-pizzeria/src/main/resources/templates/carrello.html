@@ -30,32 +30,32 @@
 				
 				<span>
 					<a href="/" class="header-item">
-									<img src="images/header/pizza.png" alt="Homepage" class="image">
+									<img src="/images/header/pizza.png" alt="Homepage" class="image">
 									<span>HOMEPAGE</span>
 					</a>
 				</span>	
 				<span>
 					<a href="/redirectByRole" class="header-item">
-									<img src="images/header/menu.png" alt="Menu" class="image">
+									<img src="/images/header/menu.png" alt="Menu" class="image">
 									<span>MENU</span>
 					</a>
 				</span>	
 				<span>
 					<a href="/carrello" class="header-item">
-									<img src="images/header/carrello.png" alt="Carrello" class="image">
+									<img src="/images/header/carrello.png" alt="Carrello" class="image">
 									<span>CARRELLO</span>
 									<span class="cart-count" th:if="${totalPizzaCount > 0}" th:text="${totalPizzaCount}"></span>
 					</a>
 				</span>		
 				<span>
 					<a href="/orari" class="header-item">
-									<img src="images/header/orologio.png" alt="Orari" class="image">
+									<img src="/images/header/orologio.png" alt="Orari" class="image">
 									<span>ORARI</span>
 					</a>
 				</span>
 				<span>
 					<a th:href="${authentication != null ? '/user' : '/login'}" class="header-item">
-				    	<img src="images/header/loginIcon.png" alt="Account" class="image">
+				    	<img src="/images/header/loginIcon.png" alt="Account" class="image">
 						<span class="user-link">
 					        <span>ACCOUNT</span>
 					        <span th:if="${authentication != null}">
@@ -112,6 +112,10 @@
 			                <span class="totale-label">Totale:</span>
 			                <span class="totale-amount" th:text="${carrello.getTotalPrice()}">0.00</span><span id="valuta">€</span>
 			            </div>
+						
+						<div th:if="${error}" class="error-message">
+					        <p th:text="${error}"></p>
+					    </div>
 						
 			            <!-- Modulo per confermare l'ordine -->
 			            <form th:action="@{/carrello/checkout}" method="POST">
