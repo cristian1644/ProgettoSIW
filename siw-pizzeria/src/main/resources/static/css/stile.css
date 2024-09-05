@@ -8,10 +8,14 @@ body {
   min-height: 100vh;
 }
 
+header{
+	width:100%;
+}
+
 .cart-count{
 	position: absolute;
-    top: -0.1px;
-    left: -0.1px;
+    top: -5px;
+    left: -0.2px;
 	transform: translate(2%, 2%);
     background-color: red;
     color: white;
@@ -21,6 +25,7 @@ body {
     font-weight: bold;
     z-index: 10;
 }
+
 
 /* ----------------------------------------------STILE BARRA RICERCA---------------------------------------------------------------------*/
 .search-container {
@@ -48,7 +53,7 @@ body {
 .search-input {   
     border: none;
     outline: none;
-    width: 320px; /* Width of the input field */
+    width: 100%; /* Width of the input field */
     font-size: 16px;
 	border-bottom: 3px solid darkgray; /* Aggiungi una linea sottile sotto il campo di input */
 	background-color: transparent; /* Rimuove il colore di sfondo per mostrare solo la sottolineatura */
@@ -116,7 +121,7 @@ body {
     text-decoration: none;
     color: white;
     font-weight: bold;
-	margin: 25px;
+	margin: 15px;
 	position: relative;
 }
 
@@ -131,7 +136,9 @@ body {
 }
 
 #siwPizzeria{
-	height: 90px;
+	width: 15%;
+	height: auto;
+    max-height: 90px; /* Altezza massima per schermi grandi */
 }
 .image {
     width: 90px;

@@ -1,6 +1,7 @@
 .pizze-container{
 	display: flex;
 	justify-content: center;
+	align-items: center;
 }
 
 .pizze-container .title{
@@ -57,7 +58,7 @@
 #menuPizzeImg{
 	width: 450px;
 	height: auto;
-	margin-left: 550px;
+	margin-left: 75%;
 }
 
 #menuPizzeImgUser{
@@ -68,7 +69,7 @@
 
 .pizza-image {
     width: 100%;
-	height: 500px;
+	height: 400px;
     display: block;
     margin: 0 auto;
 }
