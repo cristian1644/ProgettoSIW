@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Carrello;
+import it.uniroma3.siw.model.Ordine;
 import it.uniroma3.siw.model.Pizza;
 import it.uniroma3.siw.service.PizzaService;
 import jakarta.servlet.http.HttpSession;
@@ -77,6 +78,7 @@ public class CarrelloController {
     public String showCheckoutPage(Model model, HttpSession session) {
         // Recupera il carrello dalla sessione
         Carrello carrello = (Carrello) session.getAttribute("carrello");
+        model.addAttribute("ordine", new Ordine());
         model.addAttribute("carrello", carrello);
         
         if (carrello.getItems().size() == 0) {

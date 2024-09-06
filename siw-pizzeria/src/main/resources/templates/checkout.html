@@ -74,12 +74,12 @@
 					<div><img src="/images/checkout/checkoutImg.png"></div>
 					<div class="recap-data-container">
 						<div class="data-container">
-							<form th:action="@{/submit-ordine}" method="POST">
+							<form th:action="@{/submit-ordine}" th:object="${ordine}" method="POST">
 								<h1>I TUOI DATI</h1>
 								<div><input type="text" name="nome" required class="input" placeholder="Nome..."/></div>
 								<div><input type="text" name="cognome" required class="input" placeholder="Cognome..."/></div>
 								<div><input type="text" name="citta" required class="input" placeholder="Città..."/></div>
-								<div><input type="text" name="indirizzo" required class="input" placeholder="Indirizzo..."/></div>
+								<div><input type="text" name="indirizzo" required class="input" th:field="${ordine.indirizzo}" placeholder="Indirizzo..."/></div>
 								<div><input type="text" name="cap" required class="input" placeholder="CAP..."/></div>
 								
 						        
@@ -135,7 +135,9 @@
 					       </script>
 								
 								<div><button type="submit" class="submit-button">Conferma<i class="fas fa-check"></i></button></div>
-									
+								<div th:if="${#fields.hasErrors('indirizzo')}" class="error-container">
+									<span th:errors="*{indirizzo}" class="error-message"></span>
+								</div>	
 							</form>
 							
 						</div>
