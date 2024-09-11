@@ -1,4 +1,4 @@
-package it.uniroma3.siw.controller;
+ package it.uniroma3.siw.controller;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -86,14 +86,8 @@ public class PizzaController {
 	
 	 @ModelAttribute("searchPizza")
 	    public Pizza createSearchPizzaModel() {
-	        return new Pizza(); // Oggetto modello per il form di ricerca
+	        return new Pizza();
 	    }
-	
-	@GetMapping("/formSearchPizza")
-	public String formSearchPizza(Model model) {
-		model.addAttribute("pizza", new Pizza());
-		return "formSearchPizza.html";
-	}
 
 	 @GetMapping("/")
 	    public String index() {    
@@ -105,7 +99,7 @@ public class PizzaController {
 		
 		this.searchPizzaValidator.validate(searchPizza,bindingResult);
 	    if (!bindingResult.hasErrors()) {
-	    	 Pizza foundPizza = pizzaRepository.findByNome(searchPizza.getNome());
+	    	 Pizza foundPizza = pizzaRepository.findByNomeIgnoreCase(searchPizza.getNome());
 	    	 model.addAttribute("searchPizza", foundPizza);
 	    	return "redirect:pizza/" + foundPizza.getId();
 	    } else {
@@ -133,7 +127,7 @@ public class PizzaController {
         this.rimuoviPizzaValidator.validate(pizzaRemove, bindingResult);
         if(!bindingResult.hasErrors()) {
         	//recupero la pizza direttamente dal db per poter eliminare la foto
-        	 Pizza pizzaToDelete = this.pizzaRepository.findByNome(pizzaRemove.getNome());
+        	 Pizza pizzaToDelete = this.pizzaRepository.findByNomeIgnoreCase(pizzaRemove.getNome());
         	
         	//rimuovo la foto
         	if(pizzaToDelete.getPathImage() != null) {
@@ -148,7 +142,7 @@ public class PizzaController {
                 }
         	}
         	
-        	this.pizzaService.delete(this.pizzaRepository.findByNome(pizzaRemove.getNome()));
+        	this.pizzaService.delete(this.pizzaRepository.findByNomeIgnoreCase(pizzaRemove.getNome()));
         	model.addAttribute("successMessage", "Pizza rimossa con successo!");
         }else {
         	bindingResult.rejectValue("nome", "pizza.notExists");

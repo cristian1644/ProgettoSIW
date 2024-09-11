@@ -39,7 +39,7 @@ public class RoleController {
     public String adminPizzePage(Model model) {
 		model.addAttribute("pizza", new Pizza());
 		model.addAttribute("pizze",this.pizzaService.findAll());
-        return "admin-pizze"; // Restituisce il file admin-pizze.html
+        return "admin-pizze";
     }
 	
 	@GetMapping("/admin/gestionePizze")

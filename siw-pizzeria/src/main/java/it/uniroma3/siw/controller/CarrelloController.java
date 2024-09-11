@@ -52,7 +52,7 @@ public class CarrelloController {
         model.addAttribute("carrello", carrello); 
         model.addAttribute("authentication", authentication);
         
-        return "carrello"; // Nome della tua pagina HTML
+        return "carrello";
     }
 	
 	@PostMapping("/carrello/rimuovi/{pizzaId}")
@@ -98,12 +98,9 @@ public class CarrelloController {
             return "redirect:/carrello"; // Reindirizza se non ci sono articoli nel carrello
         }
 
-        // Logica per processare l'ordine
-        // Esempio: salvare l'ordine nel database, inviare email di conferma, ecc.
-
-        // Dopo che l'ordine è confermato, puoi svuotare il carrello
+        // Dopo che l'ordine è confermato, svuoto il carrello
         session.removeAttribute("carrello");
 
-        return "redirect:/conferma"; // Reindirizza alla pagina di conferma dell'ordine
+        return "redirect:/conferma"; 
     }
 }
