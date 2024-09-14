@@ -1,8 +1,9 @@
 insert into pizza (id, descrizione, nome, prezzo, path_image) values(nextval('pizza_seq'), 'mozzarella, pomodoro', 'Margherita', 6.5, 'margherita.png');
 insert into pizza (id, descrizione, nome, prezzo, path_image) values(nextval('pizza_seq'), 'mozzarella, prosciutto cotto', 'Crostino', 7.5, 'crostino.jpg');
-insert into pizza (id, descrizione, nome, prezzo, path_image) values(nextval('pizza_seq'), 'mozzarella, patate', 'Patate', 7.5, 'patate.jpg');
-insert into pizza (id, descrizione, nome, prezzo, path_image) values(nextval('pizza_seq'), 'mozzarella, pomodoro, salame piccante', 'Diavola', 7.5, 'diavola.jpg');
-insert into pizza (id, descrizione, nome, prezzo, path_image) values(nextval('pizza_seq'), 'mozzarella, prosciutto crudo', 'Biancaneve', 7, 'biancaneve.jpg');
+insert into pizza (id, descrizione, nome, prezzo, path_image) values(nextval('pizza_seq'), 'mozzarella, patate', 'Patate', 6.5, 'patate.jpg');
+insert into pizza (id, descrizione, nome, prezzo, path_image) values(nextval('pizza_seq'), 'mozzarella, pomodoro, salame piccante', 'Diavola', 8, 'diavola.jpg');
+insert into pizza (id, descrizione, nome, prezzo, path_image) values(nextval('pizza_seq'), 'mozzarella, funghi, salsicce', 'Boscaiola', 8.5, 'boscaiola.jpg');
+insert into pizza (id, descrizione, nome, prezzo, path_image) values(nextval('pizza_seq'), 'mozzarella, wurstel, patatine fritte', 'Wurstel & patatine', 8, 'wurstel.jpg');
 insert into utente(id, nome, cognome) values(nextval('utente_seq'), 'mario', 'rossi');
 insert into credentials(id, username, password, role, user_id, email) values(nextval('credentials_seq'), 'mario', 'mario', 'ROLE_ADMIN', 1, 'mario.rossi@gmail.com'); 
 insert into utente(id, nome, cognome) values(nextval('utente_seq'), 'luca', 'bianchi');

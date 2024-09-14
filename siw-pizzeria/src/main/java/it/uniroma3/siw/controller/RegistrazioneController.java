@@ -75,7 +75,7 @@ public class RegistrazioneController {
             if (credentials != null) {
                 model.addAttribute("credentials", credentials);
             } 
-        } 
+        }
         return "user";
     }
 	

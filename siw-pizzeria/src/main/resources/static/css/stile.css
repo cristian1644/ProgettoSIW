@@ -134,7 +134,7 @@ header{
 	margin-top: 15px;
 }
 
-.header-item:hover #user {
+.header-item:hover {
     text-decoration: underline;
 }
 
