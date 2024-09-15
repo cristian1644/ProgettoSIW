@@ -79,7 +79,6 @@ public class PizzaController {
 	      
 	    } else {
 	    	model.addAttribute("pizzaRemove", new Pizza());
-	    	bindingResult.rejectValue("nome", "pizza.duplicate");
 	    }
 	    return "admin-gestionePizze";
 	}	

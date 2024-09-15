@@ -51,8 +51,8 @@ public class RegistrazioneController {
 	        Utente user = userService.creaUtente(nome, cognome);
 	        this.userService.saveUser(user);
 	        
-	        String encodedPassword = passwordEncoder.encode(credentials.getPassword()); //codifico la password
-	        credentials.setPassword(encodedPassword); //la cripto prima di salvarla nel db
+	        String encodedPassword = passwordEncoder.encode(credentials.getPassword()); //codifico la password prima di salvarla nel db
+	        credentials.setPassword(encodedPassword); 
 	        credentials.setUser(user);
 	        credentials.setRole("ROLE_USER");
 	        this.credentialsService.saveCredentials(credentials);

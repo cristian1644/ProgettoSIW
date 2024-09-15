@@ -17,7 +17,7 @@ public class NewPizzaValidator implements Validator {
   public void validate(Object o, Errors errors) {
     Pizza pizza = (Pizza)o;
     if ( (pizza.getNome()!=null && pizzaRepository.existsByNomeIgnoreCase(pizza.getNome())) ) {
-      errors.reject("pizza.duplicate");
+      errors.rejectValue("nome", "pizza.duplicate");
     }
   }
   

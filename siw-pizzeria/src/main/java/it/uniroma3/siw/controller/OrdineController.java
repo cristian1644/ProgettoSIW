@@ -63,9 +63,9 @@ public class OrdineController {
 		 ordine.setDataOraConsegna(dataOraConsegnaFormatted);
 		
 	    // Crea un set di righe ordine a partire dal carrello
-	    Set<RigaOrdine> righeOrdine = carrello.getItems().stream()
-	            .map(item -> new RigaOrdine(item.getPizza().getNome(), item.getQuantity(), item.getPizza().getPrezzo()))
-	            .collect(Collectors.toSet());
+	    Set<RigaOrdine> righeOrdine = carrello.getItems().stream() //converto la lista di item in uno stream
+	            .map(item -> new RigaOrdine(item.getPizza().getNome(), item.getQuantity(), item.getPizza().getPrezzo())) //trasformo ogni item in una rigaOrdine
+	            .collect(Collectors.toSet()); //creo un set di rigaOrdine
 
 	    // Calcola il totale dell'ordine e lo imposta nell'oggetto Ordine
 	    ordine.setTotale(calcolaTotaleOrdine(righeOrdine, 5.00)); // 5.00 è un esempio di costo di spedizione

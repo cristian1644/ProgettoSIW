@@ -29,7 +29,6 @@ public class AuthConfiguration{
                     .requestMatchers(HttpMethod.POST, "/login", "/registrazione").permitAll()
                     .requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority("ROLE_ADMIN")
                     .requestMatchers(HttpMethod.POST, "/admin/**").hasAuthority("ROLE_ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/user/pizze").hasAuthority("ROLE_USER")
                     .anyRequest().authenticated()
                     
             )
