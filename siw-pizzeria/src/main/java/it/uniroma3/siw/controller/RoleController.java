@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Pizza;
-import it.uniroma3.siw.repository.CredentialsRepository;
+import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.PizzaService;
 
 @Controller
 public class RoleController {
 
-	@Autowired private CredentialsRepository credentialsRepository;
+	@Autowired private CredentialsService credentialsService;
 	@Autowired PizzaService pizzaService;
 	
 	@GetMapping("/redirectByRole")
     public String redirectByRole(Authentication authentication) {
         if (authentication != null) {
             String username = authentication.getName();
-            Credentials credentials = credentialsRepository.findByUsername(username);
+            Credentials credentials = credentialsService.findByUsername(username);
             String role = credentials.getRole();
 
             if ("ROLE_ADMIN".equals(role)) {

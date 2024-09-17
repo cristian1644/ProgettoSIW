@@ -34,4 +34,8 @@ public class PizzaService {
 	  public void delete(Pizza pizza) {
 		  pizzaRepository.delete(pizza);
 	  }
+	  
+	  public Pizza findByNomeIgnoreCase(String nome) {
+		  return this.pizzaRepository.findByNomeIgnoreCase(nome);
+	  }
 }

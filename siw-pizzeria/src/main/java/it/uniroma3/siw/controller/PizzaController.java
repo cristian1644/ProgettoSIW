@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Pizza;
-import it.uniroma3.siw.repository.PizzaRepository;
 import it.uniroma3.siw.service.PizzaService;
 import it.uniroma3.siw.validator.NewPizzaValidator;
 import it.uniroma3.siw.validator.RimuoviPizzaValidator;
@@ -32,7 +31,6 @@ public class PizzaController {
 	@Autowired private PizzaService pizzaService;
 	@Autowired private NewPizzaValidator newPizzaValidator;
 	@Autowired private SearchPizzaValidator searchPizzaValidator;
-	@Autowired private PizzaRepository pizzaRepository;
 	@Autowired private RimuoviPizzaValidator rimuoviPizzaValidator;
 	
 	@Value("${file.upload-dir}")
@@ -98,7 +96,7 @@ public class PizzaController {
 		
 		this.searchPizzaValidator.validate(searchPizza,bindingResult);
 	    if (!bindingResult.hasErrors()) {
-	    	 Pizza foundPizza = pizzaRepository.findByNomeIgnoreCase(searchPizza.getNome());
+	    	 Pizza foundPizza = pizzaService.findByNomeIgnoreCase(searchPizza.getNome());
 	    	 model.addAttribute("searchPizza", foundPizza);
 	    	return "redirect:pizza/" + foundPizza.getId();
 	    } else {
@@ -126,7 +124,7 @@ public class PizzaController {
         this.rimuoviPizzaValidator.validate(pizzaRemove, bindingResult);
         if(!bindingResult.hasErrors()) {
         	//recupero la pizza direttamente dal db per poter eliminare la foto
-        	 Pizza pizzaToDelete = this.pizzaRepository.findByNomeIgnoreCase(pizzaRemove.getNome());
+        	 Pizza pizzaToDelete = this.pizzaService.findByNomeIgnoreCase(pizzaRemove.getNome());
         	
         	//rimuovo la foto
         	if(pizzaToDelete.getPathImage() != null) {
@@ -141,7 +139,7 @@ public class PizzaController {
                 }
         	}
         	
-        	this.pizzaService.delete(this.pizzaRepository.findByNomeIgnoreCase(pizzaRemove.getNome()));
+        	this.pizzaService.delete(this.pizzaService.findByNomeIgnoreCase(pizzaRemove.getNome()));
         	model.addAttribute("successMessage", "Pizza rimossa con successo!");
         }else {
         	bindingResult.rejectValue("nome", "pizza.notExists");
